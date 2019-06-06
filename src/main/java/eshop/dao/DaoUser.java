@@ -1,18 +1,18 @@
 package eshop.dao;
 
 import eshop.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.ResourceBundle;
 
 /**
  * @author Евгений
  */
 public class DaoUser {
-    Connection connection;
+    private static Connection connection;
+    private static final Logger logger = LogManager.getLogger();
     final static ResourceBundle resourceBundle = ResourceBundle.getBundle("sqlstatements");
 
     public DaoUser() {
@@ -21,7 +21,7 @@ public class DaoUser {
     final static String INSERT_USER = resourceBundle.getString("INSERT_USER");
     final static String FIND_USER_BY_USERNAME = resourceBundle.getString("FIND_USER_BY_USERNAME");
     final static String FIND_USER_BY_ID = resourceBundle.getString("FIND_USER_BY_ID");
-    final static  String FIND_USER_WHERE_USERNAME_AND_PASSWORD = resourceBundle.getString("FIND_USER_WHERE_USERNAME_AND_PASSWORD");
+    final static String FIND_USER_WHERE_USERNAME_AND_PASSWORD = resourceBundle.getString("FIND_USER_WHERE_USERNAME_AND_PASSWORD");
 
     public void setConnection(Connection connection) {
         this.connection = connection;
@@ -44,13 +44,14 @@ public class DaoUser {
         preparedStatement.setString(1, user.getEmail());
 
         ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next() ){
+        if (resultSet.next()) {
             setProps(user, resultSet);
             return true;
         }
 
         return false;
     }
+
     public User findById(int userId) throws SQLException {
         User user = new User();
         PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_BY_ID);
@@ -65,13 +66,17 @@ public class DaoUser {
     }
 
     public boolean findByUsernameAndPassword(User user) throws SQLException {
-        PreparedStatement preparedStatement = connection.prepareStatement(FIND_USER_WHERE_USERNAME_AND_PASSWORD);
-        preparedStatement.setString(1, user.getUsername());
-        preparedStatement.setString(2, user.getPassword());
 
-        ResultSet resultSet = preparedStatement.executeQuery();
-        if (resultSet.next() ){
-            setProps(user, resultSet);
+        String query = "SELECT * FROM user WHERE username = ? AND password = ?;";
+
+        PreparedStatement statement = DaoFactory.getConnection().prepareStatement(query);
+        statement.setString(1, user.getUsername());
+        statement.setString(2, user.getPassword());
+        ResultSet resultSet = statement.executeQuery();
+
+        while(resultSet.next())
+        {
+            setProps(user,resultSet);
             return true;
         }
         return false;
@@ -83,7 +88,9 @@ public class DaoUser {
         user.setAddress(resultSet.getString("address"));
         user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));
-        user.setId(resultSet.getInt("user_id"));
+        user.setEmail(resultSet.getString("username"));
+        user.setId(resultSet.getInt("id"));
+        user.setId(resultSet.getInt("chosenProducts"));
     }
 
 }

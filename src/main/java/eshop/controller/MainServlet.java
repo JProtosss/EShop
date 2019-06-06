@@ -29,6 +29,8 @@ public class MainServlet extends HttpServlet {
             DaoFactory.setConnection();
         } catch (ClassNotFoundException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 

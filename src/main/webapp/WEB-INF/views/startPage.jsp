@@ -17,6 +17,7 @@
 
     <script src="../js/show.js"></script>
 
+
     <link rel="stylesheet" href="../../style/style.css">
     <link rel="stylesheet" href="../../style/startPage.css">
     <link rel="stylesheet" href="../../style/font.css">
@@ -25,17 +26,17 @@
 
 <body>
 <!-- Navbar (sit on top) -->
-<div class="w3-top" style="display: block;">
-    <c:import url="/WEB-INF/views/menuBar.jsp"/>
-</div>
+
+<c:import url="menuBar.jsp"/>
+
+<div id="login" class="w3-modal" style="display:none"><c:import url="authorization/login.jsp"/></div>
+<div id="registration" class="w3-modal" style="display:none"><c:import url="authorization/registration.jsp"/></div>
+<div id="recover" class="w3-modal" style="display:none"><c:import url="authorization/recover.jsp"/></div>
+
 <!-- Sidebar on small screens when clicking the menu icon -->
-<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none" id="mySidebar">
-    <button onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</button>
-    <button class="w3-bar-item w3-button">LAPTOPS</button>
-    <button class="w3-bar-item w3-button">DESKTOP COMPUTERS</button>
-    <button class="w3-bar-item w3-button">IPAD&TABLETS</button>
-    <button class="w3-bar-item w3-button">ACCESORIES</button>
-    <a href="#contact" onclick="w3_close()" class="w3-bar-item w3-button">CONTACT</a>
+<nav class="w3-sidebar w3-bar-block w3-black w3-card w3-animate-left w3-hide-medium w3-hide-large" style="display:none"
+     id="mySidebar">
+    <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
 </nav>
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
@@ -86,4 +87,20 @@
     <c:import url="blocks/footer.jsp"/>
 </footer>
 </body>
+<script>
+    var mySidebar = document.getElementById("mySidebar");
+
+
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+        } else {
+            mySidebar.style.display = 'block';
+        }
+    }
+
+    function w3_close() {
+        mySidebar.style.display = "none";
+    }
+</script>
 </html>

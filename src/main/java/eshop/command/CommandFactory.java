@@ -12,6 +12,7 @@ public class CommandFactory {
     static{
         commands.put("auth", new AuthCommand());
         commands.put("logout", new LogOutCommand());
+        commands.put("index", new IndexCommand());
     }
 
     public static Command createCommand(HttpServletRequest request){

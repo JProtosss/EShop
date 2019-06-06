@@ -25,18 +25,15 @@ public class AuthCommand extends CommandTemplate {
         User user = getUserFromParameters(request);
         cleanSession(request);
         UserErrors userErrors = new UserErrors();
-        RequestDispatcher requestDispatcher = getSamePageDispatcher(request);
         boolean isAnyError = verifyUserParams(request, user, userErrors);
-        if (isAnyError){
-            request.getSession().setAttribute("userError", userErrors);
+        request.removeAttribute("username");
+        request.removeAttribute("password");
+        if (!isAnyError){
             request.getSession().setAttribute("auth", true);
             logger.info("user logined");
-        } else {
             addAuthCookies(request, response, user);
         }
-
-        dispatcherForward(request, response, requestDispatcher);
-
+        dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/startPage.jsp"));
     }
 
     private void addAuthCookies(HttpServletRequest request, HttpServletResponse response, User user) {
@@ -50,7 +47,7 @@ public class AuthCommand extends CommandTemplate {
 
             for (String key: userMap.keySet()){
                 Cookie cookie = new Cookie(key, userMap.get(key));
-                cookie.setMaxAge(604800);
+                cookie.setMaxAge(900);
                 cookie.setPath("/");
                 response.addCookie(cookie);
             }
@@ -58,25 +55,17 @@ public class AuthCommand extends CommandTemplate {
     }
 
     private boolean verifyUserParams(HttpServletRequest request, User user, UserErrors userErrors) {
-        boolean isAnyError = false;
+        boolean isAnyError = true;
         if (isCredentialsWellFormed(user)){
             try {
                 DaoUser daoUser = DaoFactory.getDaoUser();
                 logger.info("user found");
                 isAnyError = !daoUser.findByUsernameAndPassword(user);
-                if (isAnyError) {
-                    boolean isRegistered = daoUser.findByUsername(user);
-                    if (isRegistered){
-                        userErrors.setPassword("WRONG_PASSWORD");
-                    } else {
-                        userErrors.setUsername("WRONG_USERNAME");
-                    }
-                }
-            } catch (SQLException e) {
-                userErrors.setEmail("BAD_DB_CONN");
+                } catch (SQLException e) {
+                userErrors.setUsername("BAD_DB_CONN");
             }
         } else {
-            isAnyError = true;
+            isAnyError = false;
             userErrors.setUsername("BLANK_FIELDS");
         }
         request.getSession().setAttribute("user", user);

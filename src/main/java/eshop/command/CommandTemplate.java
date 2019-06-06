@@ -51,9 +51,7 @@ public class CommandTemplate implements Command {
     }
 
     public RequestDispatcher getSamePageDispatcher(HttpServletRequest request) {
-        String[] path = request.getServletPath().split("/");
-        if (path.length < 2)
-            return request.getRequestDispatcher("/index" +".tiles");
-        return request.getRequestDispatcher("/"+ path[1] +".tiles");
+
+        return request.getRequestDispatcher(request.getContextPath());
     }
 }
