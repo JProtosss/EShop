@@ -1,10 +1,12 @@
 package eshop.command.user;
 
+import com.google.protobuf.ServiceException;
 import eshop.command.CommandTemplate;
 import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.entity.UserErrors;
+import eshop.service.PasswordService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -13,26 +15,30 @@ import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Map;
+
+/**
+ * @author Евгений
+ */
 
 public class AuthCommand extends CommandTemplate {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         User user = getUserFromParameters(request);
         cleanSession(request);
         UserErrors userErrors = new UserErrors();
         boolean isAnyError = verifyUserParams(request, user, userErrors);
-        request.removeAttribute("username");
-        request.removeAttribute("password");
         if (!isAnyError){
             request.getSession().setAttribute("auth", true);
+            request.getSession().setAttribute("user", user);
             logger.info("user logined");
             addAuthCookies(request, response, user);
-        }
+        }else response.sendRedirect(request.getRequestURI());
         dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/startPage.jsp"));
     }
 
@@ -59,10 +65,11 @@ public class AuthCommand extends CommandTemplate {
         if (isCredentialsWellFormed(user)){
             try {
                 DaoUser daoUser = DaoFactory.getDaoUser();
-                logger.info("user found");
                 isAnyError = !daoUser.findByUsernameAndPassword(user);
                 } catch (SQLException e) {
                 userErrors.setUsername("BAD_DB_CONN");
+            } catch (ServiceException e) {
+                e.printStackTrace();
             }
         } else {
             isAnyError = false;

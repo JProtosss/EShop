@@ -1,11 +1,13 @@
 package eshop.controller;
 
+import com.google.protobuf.ServiceException;
 import eshop.command.Command;
 import eshop.command.CommandFactory;
 import eshop.dao.DaoFactory;
 import eshop.entity.User;
 import org.apache.commons.beanutils.BeanUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
@@ -37,7 +39,15 @@ public class MainServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         Command command = CommandFactory.createCommand(request);
-        command.execute(request, response);
+        try {
+            command.execute(request, response);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
     }
 
     @Override
@@ -46,7 +56,15 @@ public class MainServlet extends HttpServlet {
         setLocale(request);
         autorizeByCookies(request);
         Command command = CommandFactory.createCommand(request);
-        command.execute(request, response);
+        try {
+            command.execute(request, response);
+        } catch (MessagingException e) {
+            e.printStackTrace();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (ServiceException e) {
+            e.printStackTrace();
+        }
     }
 
     private void autorizeByCookies(HttpServletRequest request) {

@@ -11,8 +11,6 @@
 <html>
 <head>
     <title>EShop</title>
-    <meta http-equiv="Content-Language" content="en"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <script src="../js/show.js"></script>
@@ -27,7 +25,9 @@
 <body>
 <!-- Navbar (sit on top) -->
 
+
 <c:import url="menuBar.jsp"/>
+
 
 <div id="login" class="w3-modal" style="display:none"><c:import url="authorization/login.jsp"/></div>
 <div id="registration" class="w3-modal" style="display:none"><c:import url="authorization/registration.jsp"/></div>
@@ -87,20 +87,4 @@
     <c:import url="blocks/footer.jsp"/>
 </footer>
 </body>
-<script>
-    var mySidebar = document.getElementById("mySidebar");
-
-
-    function w3_open() {
-        if (mySidebar.style.display === 'block') {
-            mySidebar.style.display = 'none';
-        } else {
-            mySidebar.style.display = 'block';
-        }
-    }
-
-    function w3_close() {
-        mySidebar.style.display = "none";
-    }
-</script>
 </html>

@@ -5,20 +5,23 @@ import org.apache.commons.beanutils.BeanUtils;
 
 import eshop.entity.User;
 
+import javax.mail.MessagingException;
+import javax.mail.internet.AddressException;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
 
 public class CommandTemplate implements Command {
 
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException {
         infoRedirect(request, response, "BAD_COMMAND" );
     }
 
     public void infoRedirect(HttpServletRequest request, HttpServletResponse response, String message){
-        RequestDispatcher requestDispatcher = request.getRequestDispatcher("/info.tiles");
+        RequestDispatcher requestDispatcher = request.getRequestDispatcher(request.getContextPath());
         request.setAttribute("info", message);
         dispatcherForward(request, response, requestDispatcher);
     }

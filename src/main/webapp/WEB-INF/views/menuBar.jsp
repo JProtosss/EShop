@@ -10,19 +10,17 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <body>
-<div class="w3-top">
     <div class="w3-bar w3-white w3-card" id="myNavbar">
 
         <c:choose>
             <c:when test="${auth}">
-                <button class="w3-button w3-bar-item" style="padding-bottom: -8px;"><img src="images/user.png">
+            <form method="post" action="" style="display: inline;">
+                <button name="command" class="w3-button w3-bar-item fa-lg" value="user" type="submit" style="padding: 19.5px;" ><i class="fa fa-user" aria-hidden="true"></i>
                 </button>
-                <button class="w3-button w3-bar-item"  style="padding-bottom: -8px;"><img src="images/shopping-basket-button.png">
+                <button name="command" class="w3-button w3-bar-item fa-lg" value="cart" type="submit" style="padding: 19.5px;" ><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                 </button>
-                <form method="post">
-                    <button name="command" value="logout" type="submit"
-                            class="w3-button w3-bar-item"  style="padding-bottom: -8px;"><img src="images/logout.png"></button>
-                </form>
+                <button name="command" class="w3-button w3-bar-item fa-lg" value="logout" type="submit" style="padding: 19.5px;"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
+            </form>
             </c:when>
             <c:otherwise>
                 <button onclick="document.getElementById('login').style.display='block'"
@@ -53,6 +51,5 @@
             <i class="fa fa-bars"></i>
         </a>
     </div>
-</div>
 </body>
 </html>

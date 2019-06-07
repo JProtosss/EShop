@@ -2,6 +2,8 @@ package eshop.command;
 
 import eshop.command.user.AuthCommand;
 import eshop.command.user.LogOutCommand;
+import eshop.command.user.RecoverCommand;
+import eshop.command.user.SignUpCommand;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -11,6 +13,8 @@ public class CommandFactory {
     private static Map<String, Command> commands = new HashMap<>();
     static{
         commands.put("auth", new AuthCommand());
+        commands.put("signup",new SignUpCommand());
+        commands.put("recover",new RecoverCommand());
         commands.put("logout", new LogOutCommand());
         commands.put("index", new IndexCommand());
     }
@@ -33,6 +37,7 @@ public class CommandFactory {
         String mainPath = buildPathForSearch(request);
 
         switch (mainPath){
+            case "cart": return commands.get("cart");
             case "user":return commands.get("user");
             default:return commands.get("index");
         }
@@ -52,6 +57,10 @@ public class CommandFactory {
         switch (value.toLowerCase()) {
             case "auth":
                 return commands.get("auth");
+            case "signup":
+                return commands.get("signup");
+            case "recover":
+                return  commands.get("recover");
             case "language":
                 return commands.get("language");
             case "logout":

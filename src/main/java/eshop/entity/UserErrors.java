@@ -7,8 +7,17 @@ public class UserErrors {
     private String lastname;
     private String email;
     private String password;
+    private String registered;
 
     public UserErrors() {
+    }
+
+    public String getRegistered() {
+        return registered;
+    }
+
+    public void setRegistered(String registered) {
+        this.registered = registered;
     }
 
     public String getFirstname() {

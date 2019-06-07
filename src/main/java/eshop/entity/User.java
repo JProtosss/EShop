@@ -7,7 +7,7 @@ public class User {
     private int id;
     private String username;
     private String password;
-    private String passwordCheck;
+    private String confirmPassword;
     private String email;
     private String firstname;
     private String lastname;
@@ -62,8 +62,12 @@ public class User {
         return password;
     }
 
-    public String getPasswordCheck() {
-        return passwordCheck;
+    public String getConfirmPassword() {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword) {
+        this.confirmPassword = confirmPassword;
     }
 
     public void setPassword(String password) {

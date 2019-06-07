@@ -52,7 +52,6 @@ public static Connection getConnection()
 
     public static DaoUser getDaoUser() throws SQLException {
         DaoUser daoUser = new DaoUser();
-        daoUser.setConnection(connection);
         return daoUser;
     }
 }

@@ -12,23 +12,23 @@
     <div class="w3-center"><br>
         <span onclick="document.getElementById('registration').style.display='none'" class="w3-button w3-xlarge w3-hover-red w3-display-topright w3-padding" title="Close">&times;</span>
     </div>
-    <form class="w3-container" action="">
+    <form class="w3-container" action="" method="post">
         <div class="w3-section w3-large">
             <label><b>Username</b></label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="username" required>
+            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username" name="username" id="username" irequired>
             <label><b>Password</b></label>
-            <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password" name="psw" required>
+            <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Enter Password" name="password" id="password" required>
             <label><b>Confirm Password</b></label>
-            <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Confirm Password" name="cpsw" required>
+            <input class="w3-input w3-border w3-margin-bottom" type="password" placeholder="Confirm Password" name="confirmPassword" id="confirmPassword" required>
             <label><b>E-mail</b></label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="email" name="email" required>
+            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="email" name="email" id="email" required>
             <label><b>Name</b></label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Name" name="name" required>
+            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Name" name="firstname" id="firstname" required>
             <label><b>Surname</b></label>
-            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Surname" name="surname" required>
+            <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Surname" name="lastname" id="lastname" required>
             <label><b>Address</b></label>
             <input class="w3-input w3-border" type="password" placeholder="Address" name="address" required>
-            <button class="w3-button w3-block w3-black w3-section w3-padding" type="submit">Register</button>
+            <button class="w3-button w3-block w3-black w3-section w3-padding" type="submit" name="command" value="signup">Register</button>
         </div>
     </form>
     <div class="w3-container w3-border-top w3-padding-16 w3-light-grey">

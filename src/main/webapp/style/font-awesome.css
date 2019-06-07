@@ -25,6 +25,14 @@
     vertical-align: -15%
 }
 
+.fa-btn{
+    font-size: 1.11111111em;
+}
+
+.fa-15px{
+    font-size: 1.55555555em;
+}
+
 .fa-2x {
     font-size: 2em
 }

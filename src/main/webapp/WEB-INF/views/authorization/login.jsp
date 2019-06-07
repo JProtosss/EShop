@@ -19,7 +19,7 @@
 
             <%--Username field begin --%>
             <c:choose>
-                <c:when test="${not empty userError.username && not empty auth}">
+                <c:when test="${not empty userError.username!=null && auth}">
                     <c:set var="classUsername" value="has-error"/>
                 </c:when>
                 <c:otherwise>
@@ -34,7 +34,7 @@
 
             <%--Password field begin --%>
             <c:choose>
-                <c:when test="${not empty userError.password && not empty auth}">
+                <c:when test="${userError.password!=null && auth}">
                     <c:set var="classPassword" value="has-error"/>
                 </c:when>
                 <c:otherwise>
