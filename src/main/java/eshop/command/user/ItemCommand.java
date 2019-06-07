@@ -1,20 +1,17 @@
 package eshop.command.user;
 
-import com.google.protobuf.ServiceException;
-import eshop.command.Command;
+import eshop.command.CommandTemplate;
 
-import javax.mail.MessagingException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.sql.SQLException;
 
 /**
  * @author Евгений
  */
-public class ItemCommand implements Command {
+public class ItemCommand extends CommandTemplate {
     @Override
-    public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, MessagingException, SQLException, ServiceException {
-
+    public void execute(HttpServletRequest request, HttpServletResponse response){
+        request.getSession().setAttribute("item",request.getParameter("item"));
+        dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/item.jsp"));
     }
 }

@@ -1,7 +1,5 @@
 package eshop.filter;
 
-import eshop.dao.DaoFactory;
-
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

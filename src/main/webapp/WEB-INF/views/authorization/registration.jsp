@@ -27,7 +27,7 @@
             <label><b>Surname</b></label>
             <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Surname" name="lastname" id="lastname" required>
             <label><b>Address</b></label>
-            <input class="w3-input w3-border" type="password" placeholder="Address" name="address" required>
+            <input class="w3-input w3-border" type="text" placeholder="Address" name="address" required>
             <button class="w3-button w3-block w3-black w3-section w3-padding" type="submit" name="command" value="signup">Register</button>
         </div>
     </form>

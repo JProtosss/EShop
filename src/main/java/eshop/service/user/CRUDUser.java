@@ -16,7 +16,7 @@ public class CRUDUser {
     final static String UPDATE_USER = resourceBundle.getString("UPDATE_USER");
 
 
-    public void update(User user) throws SQLException {
+    public static void update(User user) throws SQLException {
         PreparedStatement preparedStatement = DaoFactory.getConnection().prepareStatement(UPDATE_USER);
         preparedStatement.setString(1, user.getUsername());
         preparedStatement.setString(2, user.getPassword());
@@ -24,8 +24,9 @@ public class CRUDUser {
         preparedStatement.setString(4, user.getFirstname());
         preparedStatement.setString(5, user.getLastname());
         preparedStatement.setString(6, user.getAddress());
+        preparedStatement.setInt(7, user.getId());
+        System.out.println(preparedStatement.toString());
         preparedStatement.executeUpdate();
-
     }
 
 }

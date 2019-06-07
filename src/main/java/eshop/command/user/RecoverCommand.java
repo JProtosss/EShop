@@ -6,6 +6,7 @@ import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.service.EmailService;
 import eshop.service.PasswordService;
+import eshop.service.user.CRUDUser;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -30,7 +31,10 @@ public class RecoverCommand implements Command {
         boolean userExist = findUser(user);
         if (userExist) {
             EmailService emailService = new EmailService();
-            emailService.send("Recover PAssword", "There is your new password: " + PasswordService.resetPassword(), user.getEmail());
+            PasswordService.generateNewPassword(user);
+            emailService.send("Recover Password", "There is your new password: "+user.getPassword() , user.getEmail());
+            user.setPassword(PasswordService.passwordHash(user.getPassword()));
+            CRUDUser.update(user);
             logger.info("recover succesfull");
         }else logger.info("recover not succesfull");
             response.sendRedirect(request.getRequestURI());

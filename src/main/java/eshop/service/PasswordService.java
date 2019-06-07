@@ -7,7 +7,6 @@ import eshop.entity.User;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.sql.SQLException;
-import java.util.List;
 
 /**
  * @author Евгений
@@ -38,5 +37,10 @@ public class PasswordService {
         } catch (NoSuchAlgorithmException e) {
             throw new ServiceException(e);
         }
+    }
+    public static String generateNewPassword(User user) throws SQLException, ServiceException {
+        String newPassword=user.getUsername()+user.getId();
+        user.setPassword(newPassword);
+        return newPassword;
     }
 }

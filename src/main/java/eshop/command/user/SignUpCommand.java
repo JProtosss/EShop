@@ -6,7 +6,6 @@ import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.entity.UserErrors;
-import eshop.service.PasswordService;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

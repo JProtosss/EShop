@@ -6,12 +6,10 @@ import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.entity.UserErrors;
-import eshop.service.PasswordService;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

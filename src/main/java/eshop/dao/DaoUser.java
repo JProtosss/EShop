@@ -6,7 +6,9 @@ import eshop.service.PasswordService;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.sql.*;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
@@ -72,6 +74,7 @@ public class DaoUser {
         ResultSet resultSet = statement.executeQuery();
         if (resultSet.next())
         {
+            setProps(user,resultSet);
             return true;
         }
         return false;
@@ -108,9 +111,9 @@ public class DaoUser {
         user.setLastname(resultSet.getString("lastname"));
         user.setAddress(resultSet.getString("address"));
         user.setEmail(resultSet.getString("email"));
-        user.setEmail(resultSet.getString("username"));
+        user.setUsername(resultSet.getString("username"));
         user.setId(resultSet.getInt("id"));
-        user.setId(resultSet.getInt("chosenProducts"));
+        user.setChosenProducts(resultSet.getString("chosenProducts"));
     }
 
 

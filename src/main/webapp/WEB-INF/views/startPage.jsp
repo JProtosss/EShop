@@ -25,9 +25,9 @@
 <body>
 <!-- Navbar (sit on top) -->
 
-
+<div class="w3-top">
 <c:import url="menuBar.jsp"/>
-
+</div>
 
 <div id="login" class="w3-modal" style="display:none"><c:import url="authorization/login.jsp"/></div>
 <div id="registration" class="w3-modal" style="display:none"><c:import url="authorization/registration.jsp"/></div>
@@ -39,7 +39,7 @@
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
 </nav>
 <!-- Header with full-height image -->
-<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+<header class="bgimg-1 w3-display-container w3-grayscale-min w3-animate-opacity" id="home">
     <div class="w3-display-left w3-text-white" style="padding:48px">
         <span class="w3-jumbo w3-hide-small">Make your choice</span><br>
         <span class="w3-xxlarge w3-hide-large w3-hide-medium">Make your choice</span><br>

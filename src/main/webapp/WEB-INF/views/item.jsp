@@ -42,7 +42,7 @@
                     <h3>Name</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Buy</button></p>
+                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
                 </div>
             </div>
         </div>
@@ -53,7 +53,7 @@
                     <h3>Name</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Buy</button></p>
+                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
                 </div>
             </div>
         </div>
@@ -64,7 +64,7 @@
                     <h3>Name</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Buy</button></p>
+                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
                 </div>
             </div>
         </div>
@@ -75,7 +75,7 @@
                     <h3>Name</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Buy</button></p>
+                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
                 </div>
             </div>
         </div>
@@ -86,7 +86,7 @@
                     <h3>Name</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Buy</button></p>
+                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Add to cart</button></p>
                 </div>
             </div>
         </div>
