@@ -13,13 +13,15 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import static eshop.service.CookieService.addCookies;
+
 /**
  * @author Евгений
  */
 public class AccountCommand extends CommandTemplate {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
-        if (((User) request.getSession().getAttribute("user")).getRole().equals("admin")) {
+        if (request.getSession().getAttribute("role")=="admin") {
             List<User> usersList = new ArrayList<>();
             List<Product> productsList=new ArrayList<>();
             DaoUser daoUser = new DaoUser();
@@ -32,6 +34,7 @@ public class AccountCommand extends CommandTemplate {
             }
             request.getSession().setAttribute("usersList", usersList);
             request.getSession().setAttribute("productsList", productsList);
+            addCookies(request, response, (User) request.getSession().getAttribute("user"));
         }
         dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/account.jsp"));
     }

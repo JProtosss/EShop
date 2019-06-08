@@ -53,8 +53,9 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        setLocale(request);
-        autorizeByCookies(request);
+//        clearSessionInvalidUser(request);
+//        setLocale(request);
+//        autorizeByCookies(request);
         Command command = CommandFactory.createCommand(request);
         try {
             command.execute(request, response);
@@ -96,6 +97,13 @@ public class MainServlet extends HttpServlet {
             request.getSession().setAttribute("lang_id", language);
             Locale locale = new Locale(language);
             Locale.setDefault(locale);
+        }
+    }
+    private void clearSessionInvalidUser(HttpServletRequest request) {
+        if (request.getSession().getAttribute("userError") != null) {
+            request.getSession().removeAttribute("user");
+            request.getSession().removeAttribute("auth");
+            request.getSession().removeAttribute("userError");
         }
     }
 }

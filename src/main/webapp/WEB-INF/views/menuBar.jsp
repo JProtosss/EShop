@@ -13,7 +13,7 @@
     <c:choose>
         <c:when test="${auth}">
             <form method="post" action="" style="display: inline;">
-                <c:if test="${user.getRole() ne 'admin'}">
+                <c:if test="${role ne 'admin' && role ne 'quest'}">
                     <button name="command" class="w3-button w3-bar-item fa-lg" value="account" type="submit"
                             style="padding: 19.5px;"><i class="fa fa-user" aria-hidden="true"></i>
                     </button>
@@ -25,7 +25,7 @@
                 <button name="command" class="w3-button w3-bar-item fa-lg" value="logout" type="submit"
                         style="padding: 19.5px;"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
             </form>
-            <c:if test="${user.getRole() ne 'admin'}">
+            <c:if test="${role ne 'admin' && role ne 'quest'}">
                 <form method="post" action="" style="display: inline;">
                     <div class="w3-right w3-hide-small">
                         <button class="w3-bar-item w3-button" style="font-weight: bold" type="submit" name="command"

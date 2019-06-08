@@ -27,7 +27,7 @@
 
 <div class="w3-container w3-light-grey" style="padding:128px 16px">
     <c:choose>
-        <c:when test="${user.getRole() ne 'admin'}">
+        <c:when test="${role ne 'admin' && role ne 'quest'}">
             <div class="w3">
                 <div class="w3-container w3-light-grey" id="contact">
                     <h3 class="w3-center">Account</h3>
