@@ -1,4 +1,4 @@
-package eshop.command.user;
+package eshop.command.cart;
 
 import eshop.command.CommandTemplate;
 

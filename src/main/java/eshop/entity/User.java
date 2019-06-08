@@ -15,8 +15,17 @@ public class User {
     private String chosenProducts;
     private String role;
 
-    public User()
-    {}
+    public User() {
+    }
+
+    public User(int id, String username, String email, String firstname, String lastname, String role) {
+        this.id = id;
+        this.username = username;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.role = role;
+    }
 
     public String getRole() {
         return role;

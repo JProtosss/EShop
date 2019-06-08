@@ -11,16 +11,7 @@
 <html>
 <head>
     <title>EShop</title>
-    <meta http-equiv="Content-Language" content="en"/>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <script src="../js/show.js"></script>
-
-    <link rel="stylesheet" href="../../style/style.css">
-    <link rel="stylesheet" href="../../style/startPage.css">
-    <link rel="stylesheet" href="../../style/font.css">
-    <link rel="stylesheet" href="../../style/font-awesome.css">
+    <c:import url="blocks/resources.jsp"/>
 </head>
 <body>
 <div class="w3-top">
@@ -31,62 +22,72 @@
     <p class="w3-center w3-large">Actually what you need</p>
     <div class="w3-center w3-grayscale w3-padding" style="margin-top:25px">
         <div class="w3-card w3-border">
-            <input class="w3-input" type="text" id="search" placeholder="Search...">
+            <input class="w3-input" type="text" id="Search" onkeyup="searchItem()" placeholder="Search...">
         </div>
     </div>
     <div class="w3-row-padding w3-grayscale" style="margin-top:15px">
-        <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
                 <img src="../../images/xps.jpg" style="width:100%">
                 <div class="w3-container">
-                    <h3>Name</h3>
+                    <h3>Apple</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
+                    <p>
+                        <button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Add to cart</button>
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
                 <img src="../../images/xps.jpg" style="width:100%">
                 <div class="w3-container">
-                    <h3>Name</h3>
+                    <h3>Lenovo</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
+                    <p>
+                        <button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Add to cart</button>
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
                 <img src="../../images/xps.jpg" style="width:100%">
                 <div class="w3-container">
-                    <h3>Name</h3>
+                    <h3>Samsung</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
+                    <p>
+                        <button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Add to cart</button>
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
                 <img src="../../images/xps.jpg" style="width:100%">
                 <div class="w3-container">
-                    <h3>Name</h3>
+                    <h3>Xiaomi</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i>  Add to cart</button></p>
+                    <p>
+                        <button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Add to cart</button>
+                    </p>
                 </div>
             </div>
         </div>
-        <div class="w3-col l3 m6 w3-margin-bottom">
+        <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
                 <img src="../../images/xps.jpg" style="width:100%">
                 <div class="w3-container">
-                    <h3>Name</h3>
+                    <h3>Dell</h3>
                     <p class="w3-opacity">Model</p>
                     <p>Description</p>
-                    <p><button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Add to cart</button></p>
+                    <p>
+                        <button class="w3-button w3-light-grey w3-block"><i class="fa"></i> Add to cart</button>
+                    </p>
                 </div>
             </div>
         </div>
@@ -96,6 +97,19 @@
 <footer class="w3-center w3-black w3-padding-64">
     <c:import url="blocks/footer.jsp"/>
 </footer>
-
 </body>
+<script>
+    function searchItem() {
+        var input = document.getElementById("Search");
+        var filter = input.value.toLowerCase();
+        var nodes = document.getElementsByClassName('target');
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].innerText.toLowerCase().includes(filter)) {
+                nodes[i].style.display = "block";
+            } else {
+                nodes[i].style.display = "none";
+            }
+        }
+    }
+</script>
 </html>

@@ -11,20 +11,12 @@
 <html>
 <head>
     <title>Cart</title>
-    <script src="../js/show.js"></script>
-
-
-    <link rel="stylesheet" href="../../style/style.css">
-    <link rel="stylesheet" href="../../style/startPage.css">
-    <link rel="stylesheet" href="../../style/font.css">
-    <link rel="stylesheet" href="../../style/font-awesome.css">
+    <c:import url="blocks/resources.jsp"/>
 </head>
 <body>
 <div class="w3-top">
     <c:import url="menuBar.jsp"/>
 </div>
-
-
 
 
 <footer class="w3-center w3-black w3-padding-64">

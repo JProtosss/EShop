@@ -7,8 +7,7 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<html>
-<body>
+
 <div class="w3-modal-content w3-card-4 w3-animate-zoom" style="max-width:600px">
     <div class="w3-center"><br>
         <span onclick="document.getElementById('login').style.display='none'"
@@ -26,11 +25,11 @@
                     <c:set var="classUsername" value=""/>
                 </c:otherwise>
             </c:choose>
-                <div class="${classUsername}">
-                    <label><b>Username</b></label>
-                    <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username"
-                           name="username" required>
-                </div>
+            <div class="${classUsername}">
+                <label><b>Username</b></label>
+                <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Enter Username"
+                       name="username" required>
+            </div>
 
             <%--Password field begin --%>
             <c:choose>
@@ -59,5 +58,4 @@
                 onclick="document.getElementById('login').style.display='none';document.getElementById('registration').style.display='block'">Registration</a></span>
     </div>
 </div>
-</body>
-</html>
+

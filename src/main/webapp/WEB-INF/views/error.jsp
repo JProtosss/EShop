@@ -13,8 +13,8 @@
 <body>
 <h1>Эх братец, что-то пошло не так!</h1>
 <h6>Sorry(( Сорямба</h6>
-    <div class="w3-panel w3-pale-red w3-border" role="alert">
-       ${error}
-    </div>
+<div class="w3-panel w3-pale-red w3-border" role="alert">
+    ${error}
+</div>
 </body>
 </html>

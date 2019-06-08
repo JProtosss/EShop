@@ -67,6 +67,7 @@ public class MainServlet extends HttpServlet {
         }
     }
 
+
     private void autorizeByCookies(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
         if (cookies != null && cookies.length > 1) {
