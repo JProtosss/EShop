@@ -24,8 +24,8 @@ public class CRUDUser {
         preparedStatement.setString(4, user.getFirstname());
         preparedStatement.setString(5, user.getLastname());
         preparedStatement.setString(6, user.getAddress());
-        preparedStatement.setInt(7, user.getId());
-        preparedStatement.setString(8,user.getRole());
+        preparedStatement.setString(7,user.getRole());
+        preparedStatement.setInt(8, user.getId());
         System.out.println(preparedStatement.toString());
         preparedStatement.executeUpdate();
     }

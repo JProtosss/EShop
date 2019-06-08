@@ -44,20 +44,6 @@ public class DaoUser {
         preparedStatement.executeUpdate();
     }
 
-
-    public boolean findByUsername(User user) throws SQLException, ServiceException {
-        PreparedStatement preparedStatement = DaoFactory.getConnection().prepareStatement(FIND_USER_BY_USERNAME);
-        preparedStatement.setString(1, user.getUsername());
-
-        ResultSet resultSet = preparedStatement.executeQuery();
-        while (resultSet.next()) {
-            setProps(user, resultSet);
-            return true;
-        }
-        return false;
-    }
-
-
     public boolean findByEmail(User user) throws SQLException, ServiceException {
         PreparedStatement preparedStatement = DaoFactory.getConnection().prepareStatement(FIND_USER_BY_EMAIL);
         preparedStatement.setString(1, user.getEmail());
@@ -88,15 +74,15 @@ public class DaoUser {
         Statement statement = DaoFactory.getConnection().createStatement();
         ResultSet resultSet = statement.executeQuery(FIND_ALL_USERS);
         while (resultSet.next()) {
-            usersList.add(new User(resultSet.getInt("id"), resultSet.getString("username"), resultSet.getString("email"), resultSet.getString("firstname"), resultSet.getString("lastname"), resultSet.getString("role")));
+            usersList.add(new User(resultSet.getInt("id"),resultSet.getString("username"), resultSet.getString("email"), resultSet.getString("firstname"), resultSet.getString("lastname"), resultSet.getString("role")));
         }
         return usersList;
     }
 
-    public User findById(int userId) throws SQLException, ServiceException {
+    public User findById(int user_Id) throws SQLException, ServiceException {
         User user = new User();
         PreparedStatement preparedStatement = DaoFactory.getConnection().prepareStatement(FIND_USER_BY_ID);
-        preparedStatement.setInt(1, user.getId());
+        preparedStatement.setInt(1, user_Id);
 
         ResultSet resultSet = preparedStatement.executeQuery();
         if (resultSet.next()) {
@@ -122,6 +108,7 @@ public class DaoUser {
     private void setProps(User user, ResultSet resultSet) throws SQLException, ServiceException {
         user.setId(resultSet.getInt("id"));
         user.setUsername(resultSet.getString("username"));
+        user.setPassword(resultSet.getString("password"));
         user.setEmail(resultSet.getString("email"));
         user.setFirstname(resultSet.getString("firstname"));
         user.setLastname(resultSet.getString("lastname"));

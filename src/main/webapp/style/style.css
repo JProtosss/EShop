@@ -270,6 +270,10 @@ a {
     color: white;
 }
 
+td,th{
+    text-align: left;
+}
+
 .w3-table, .w3-table-all {
     border-collapse: collapse;
     border-spacing: 0;

@@ -4,6 +4,7 @@ import com.google.protobuf.ServiceException;
 import eshop.command.Command;
 import eshop.command.CommandFactory;
 import eshop.dao.DaoFactory;
+import eshop.dao.DaoUser;
 import eshop.entity.User;
 import org.apache.commons.beanutils.BeanUtils;
 
@@ -52,7 +53,6 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        clearSessionInvalidUser(request);
         setLocale(request);
         autorizeByCookies(request);
         Command command = CommandFactory.createCommand(request);
@@ -70,7 +70,7 @@ public class MainServlet extends HttpServlet {
 
     private void autorizeByCookies(HttpServletRequest request) {
         Cookie[] cookies = request.getCookies();
-        if (cookies != null && cookies.length > 1) {
+        if (cookies!= null && cookies.length > 1) {
             Map<String, String> userMap = new HashMap<>();
             for (Cookie cookie : cookies) {
                 userMap.put(cookie.getName(), cookie.getValue());
@@ -96,14 +96,6 @@ public class MainServlet extends HttpServlet {
             request.getSession().setAttribute("lang_id", language);
             Locale locale = new Locale(language);
             Locale.setDefault(locale);
-        }
-    }
-
-    private void clearSessionInvalidUser(HttpServletRequest request) {
-        if (request.getSession().getAttribute("userError") != null) {
-            request.getSession().removeAttribute("user");
-            request.getSession().removeAttribute("auth");
-            request.getSession().removeAttribute("userError");
         }
     }
 }

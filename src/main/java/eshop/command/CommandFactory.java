@@ -3,6 +3,9 @@ package eshop.command;
 import eshop.command.cart.CartCommand;
 import eshop.command.item.ItemCommand;
 import eshop.command.user.*;
+import eshop.command.user.admin.BlacklistCommand;
+import eshop.command.user.admin.DeleteCommand;
+import eshop.command.user.admin.EditCommand;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -15,6 +18,9 @@ public class CommandFactory {
         commands.put("auth", new AuthCommand());
         commands.put("signup", new SignUpCommand());
         commands.put("account", new AccountCommand());
+        commands.put("edit",new EditCommand());
+        commands.put("blacklist",new BlacklistCommand());
+        commands.put("delete",new DeleteCommand());
         commands.put("cart", new CartCommand());
         commands.put("item", new ItemCommand());
         commands.put("recover", new RecoverCommand());
@@ -25,6 +31,9 @@ public class CommandFactory {
     public static Command createCommand(HttpServletRequest request) {
 
         String value = request.getParameter("command");
+        String edit=request.getParameter("edit");
+        String blacklist=request.getParameter("blacklist");
+        String delete=request.getParameter("delete");
         String item = request.getParameter("item");
 
         if (item != null) {
@@ -33,15 +42,12 @@ public class CommandFactory {
         if (value != null) {
             return getCommandByParameter(value);
         }
-        return getCommandByRequestPath(request);
-    }
-
-    private static Command getCommandByRequestPath(HttpServletRequest request) {
-        String mainPath = buildPathForSearch(request);
-        switch (mainPath) {
-            default:
-                return commands.get("index");
+        if (blacklist!=null)
+        {
+            return commands.get("blacklist");
         }
+
+        return commands.get("index");
     }
 
     private static String buildPathForSearch(HttpServletRequest request) {

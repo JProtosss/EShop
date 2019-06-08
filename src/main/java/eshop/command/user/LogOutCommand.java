@@ -17,11 +17,20 @@ public class LogOutCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) {
+        clearSessionInvalidUser(request);
         request.getSession().invalidate();
         try {
             response.sendRedirect("/");
         } catch (IOException e) {
             logger.error("Redirect", e);
         }
+    }
+
+    private void clearSessionInvalidUser(HttpServletRequest request) {
+        request.getSession().removeAttribute("user");
+        request.getSession().removeAttribute("auth");
+        request.getSession().removeAttribute("userError");
+        request.getSession().removeAttribute("usersList");
+        request.getSession().removeAttribute("productsList");
     }
 }

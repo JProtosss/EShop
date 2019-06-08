@@ -26,6 +26,7 @@ public class DaoFactory {
     {}
 
     public static void setConnection() throws ClassNotFoundException, IOException {
+       // lockForSingleTone.lock();
         if (connection==null)
         {
             InputStream inputStream = DaoFactory.class.getResourceAsStream("/db.properties");
@@ -42,6 +43,7 @@ public class DaoFactory {
                 e.printStackTrace();
             }
         }
+        //lockForSingleTone.unlock();
         logger.info("connected to db");
     }
 

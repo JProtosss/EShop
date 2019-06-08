@@ -32,10 +32,10 @@ public class AuthCommand extends CommandTemplate {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
         User user = getUserFromParameters(request);
-        cleanSession(request);
         UserErrors userErrors = new UserErrors();
         boolean isAnyError = verifyUserParams(request, user, userErrors);
         if (!isAnyError) {
+            request.setAttribute("cookieOn","on");
             request.getSession().setAttribute("auth", true);
             request.getSession().setAttribute("user", user);
             logger.info("user logined");
@@ -70,5 +70,6 @@ public class AuthCommand extends CommandTemplate {
     private void cleanSession(HttpServletRequest request) {
         request.getSession().removeAttribute("userError");
         request.getSession().removeAttribute("auth");
+        request.getSession().removeAttribute("user");
     }
 }

@@ -10,9 +10,6 @@ import java.io.IOException;
 
 import static eshop.service.user.VerifyUser.verifyUserParams;
 
-/**
- * Created by Сергей on 22.12.2014.
- */
 public class IndexCommand extends CommandTemplate {
 
     @Override
