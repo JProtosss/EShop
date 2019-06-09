@@ -26,43 +26,56 @@
         <form method="post" action="" class="w3-container">
             <h4>Name:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="<c:if test="${product ne null}">${product.getName()}</c:if>">
+                   value="<c:if test="${productAdd eq null}">${product.getName()}</c:if>" name="productName">
             <h4>Price:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="${product.getPrice()}">
+                   value="<c:if test="${productAdd eq null}">${product.getPrice()}</c:if>" name="productPrice">
             <h4>Amount:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="${product.getAmount()}">
+                   value="<c:if test="${productAdd eq null}">${product.getAmount()}</c:if>" name="productAmount">
             <h4>Description:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="${product.getDescription()}">
+                   value="<c:if test="${productAdd eq null}">${product.getDescription()}</c:if>" name="productDescription">
             <h4>Image:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="${product.getImage()}">
+                   value="<c:if test="${productAdd eq null}">${product.getImage()}</c:if>" name="productImage">
             <h4>Manufacturer:</h4>
-            <select class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                    onchange="filterManufacturer()">
+            <select class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none" name="manufacturerName">
                 <c:forEach var="manufacturer" items="${manufacturers}">
                     <c:choose>
-                        <c:when test="${product.getManufacturer().getName() eq manufacturer.getName()}">
-                            <option selected="selected"
-                                    value="${manufacturer.getId()}">${manufacturer.getName()}</option>
+                        <c:when test="${productAdd eq null}">
+                            <c:choose>
+                                <c:when test="${product.getManufacturer().getName() eq manufacturer.getName()}">
+                                    <option selected="selected"
+                                            value="${manufacturer.getName()}">${manufacturer.getName()}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${manufacturer.getName()}">${manufacturer.getName()}</option>
+                                </c:otherwise>
+                            </c:choose>
                         </c:when>
                         <c:otherwise>
-                            <option value="${manufacturer.getId()}">${manufacturer.getName()}</option>
+                            <option value="${manufacturer.getName()}">${manufacturer.getName()}</option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
             </select>
             <h4>Type:</h4>
-            <select class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none">
+            <select class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none" name="productType">
                 <c:forEach var="type" items="${types}">
                     <c:choose>
-                        <c:when test="${product.getType().getType() eq type.getType()}">
-                            <option selected="selected" value="${type.getId()}">${type.getType()}</option>
+                        <c:when test="${productAdd eq null}">
+                            <c:choose>
+                                <c:when test="${product.getType().getType() eq type.getType()}">
+                                    <option selected="selected" value="${type.getType()}">${type.getType()}</option>
+                                </c:when>
+                                <c:otherwise>
+                                    <option value="${type.getType()}">${type.getType()}</option>
+                                </c:otherwise>
+                            </c:choose>
                         </c:when>
                         <c:otherwise>
-                            <option value="${type.getId()}">${type.getType()}</option>
+                            <option value="${type.getType()}">${type.getType()}</option>
                         </c:otherwise>
                     </c:choose>
                 </c:forEach>
@@ -73,10 +86,10 @@
                         type="submit" name="command" value="account">
                     Cancel changes
                 </button>
-            <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
-                    type="submit">
-                Save changes
-            </button>
+                <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
+                        type="submit" name="command" value="addProduct">
+                    Save changes
+                </button>
             </div>
             </c:when>
             <c:otherwise>

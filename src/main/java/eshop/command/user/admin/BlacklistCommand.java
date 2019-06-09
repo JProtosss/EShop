@@ -2,7 +2,6 @@ package eshop.command.user.admin;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.CommandTemplate;
 import eshop.command.user.AccountCommand;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
@@ -18,7 +17,7 @@ import java.sql.SQLException;
 /**
  * @author Евгений
  */
-public class BlacklistCommand extends CommandTemplate {
+public class BlacklistCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, ServletException, SQLException, ServiceException {
         int user_id = Integer.parseInt(request.getParameter("blacklist"));

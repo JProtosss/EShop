@@ -1,12 +1,14 @@
 package eshop.command;
 
 import eshop.command.cart.CartCommand;
+import eshop.command.product.AddProductCommand;
 import eshop.command.product.EditProductCommand;
 import eshop.command.product.ProductCommand;
 import eshop.command.product.ProductInfoCommand;
 import eshop.command.user.*;
 import eshop.command.user.admin.BlacklistCommand;
 import eshop.command.user.admin.DeleteCommand;
+import eshop.entity.Product;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,6 +26,7 @@ public class CommandFactory {
         commands.put("editUser",new EditUserCommand());
         commands.put("infoUser",new UserInfoCommand());
         commands.put("infoProduct",new ProductInfoCommand());
+        commands.put("addProduct",new AddProductCommand());
         commands.put("blacklist",new BlacklistCommand());
         commands.put("delete",new DeleteCommand());
         commands.put("cart", new CartCommand());
@@ -39,6 +42,7 @@ public class CommandFactory {
         String editProduct=request.getParameter("editProduct");
         String editUser=request.getParameter("editUser");
         String infoProduct=request.getParameter("infoProduct");
+
         String infoUser=request.getParameter("infoUser");
         String blacklist=request.getParameter("blacklist");
         String delete=request.getParameter("delete");
@@ -50,6 +54,7 @@ public class CommandFactory {
 
         if (editUser!=null)
         {
+            request.removeAttribute("editUser");
             return commands.get("editUser");
         }
 
@@ -65,6 +70,7 @@ public class CommandFactory {
 
         if (infoUser!=null)
         {
+            request.removeAttribute("infoUser");
             return commands.get("infoUser");
         }
 
@@ -90,6 +96,8 @@ public class CommandFactory {
                 return commands.get("account");
             case "cart":
                 return commands.get("cart");
+            case "addproduct":
+                return commands.get("addProduct");
             case "product":
                 return commands.get("product");
             case "recover":

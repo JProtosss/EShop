@@ -32,18 +32,18 @@
                                 value="index">
                             HOME
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="item" value="laptop">
+                        <button class="w3-button w3-bar-item" type="submit" name="product" value="laptop">
                             <i class="fa">
                             </i> LAPTOPS
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="item" value="desktop">
+                        <button class="w3-button w3-bar-item" type="submit" name="product" value="desktop">
                             <i class="fa"></i> DESKTOP COMPUTERS
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="item" value="tablets"><i
+                        <button class="w3-button w3-bar-item" type="submit" name="product" value="tablets"><i
                                 class="fa"></i>
                             IPAD&TABLETS
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="item" value="accesories"><i
+                        <button class="w3-button w3-bar-item" type="submit" name="product" value="accesories"><i
                                 class="fa"></i>
                             ACCESORIES
                         </button>

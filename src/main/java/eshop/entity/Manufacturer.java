@@ -9,10 +9,15 @@ public class Manufacturer {
     String country;
     String name;
 
-    public Manufacturer(int id,String country, String name) {
+    public Manufacturer(int id,String name,String country) {
         this.id=id;
         this.country = country;
         this.name = name;
+    }
+
+    public Manufacturer(String name)
+    {
+        this.name=name;
     }
 
     public int getId() {

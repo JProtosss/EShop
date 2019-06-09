@@ -99,8 +99,6 @@
 </body>
 <script>
     var mySidebar = document.getElementById("mySidebar");
-
-
     function w3_open() {
         if (mySidebar.style.display === 'block') {
             mySidebar.style.display = 'none';

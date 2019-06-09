@@ -1,12 +1,14 @@
 package eshop.command.user;
 
 import com.google.protobuf.ServiceException;
-import eshop.command.CommandTemplate;
+import eshop.command.Command;
 import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.entity.UserErrors;
+import org.apache.commons.beanutils.BeanUtils;
 
+import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
@@ -15,10 +17,10 @@ import java.sql.SQLException;
 /**
  * @author Евгений
  */
-public class SignUpCommand extends CommandTemplate {
+public class SignUpCommand implements Command {
 
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         User user = getUserFromParameters(request);
         request.getSession().removeAttribute("userError");
         UserErrors userErrors = new UserErrors();
@@ -31,7 +33,8 @@ public class SignUpCommand extends CommandTemplate {
 
         request.getSession().setAttribute("user", user);
         request.getSession().setAttribute("auth", true);
-        dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/startPage.jsp"));
+        request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request,response);
+
     }
 
     private boolean persistUser(User user, UserErrors userErrors) {
@@ -83,5 +86,14 @@ public class SignUpCommand extends CommandTemplate {
             }
         }
         return isUserValid;
+    }
+
+    public User getUserFromParameters(HttpServletRequest request) {
+        User user = new User();
+        try {
+            BeanUtils.populate(user, request.getParameterMap());
+        } catch (ReflectiveOperationException e) {
+        }
+        return user;
     }
 }

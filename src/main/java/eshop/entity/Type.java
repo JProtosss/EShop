@@ -13,6 +13,11 @@ public class Type {
         this.type = type;
     }
 
+    public Type(String type)
+    {
+        this.type=type;
+    }
+
     public int getId() {
         return id;
     }

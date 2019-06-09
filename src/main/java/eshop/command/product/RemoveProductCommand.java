@@ -1,4 +1,4 @@
-package eshop.command.user;
+package eshop.command.product;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  * @author Евгений
  */
-public class EditUserCommand implements Command {
+public class RemoveProductCommand implements Command {
     @Override
     public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
 

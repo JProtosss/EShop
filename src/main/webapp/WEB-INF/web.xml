@@ -40,8 +40,10 @@
   </filter-mapping>
 
   <servlet>
+
     <servlet-name>mainServlet</servlet-name>
     <servlet-class>eshop.controller.MainServlet</servlet-class>
+    <load-on-startup>0</load-on-startup>
   </servlet>
 
   <servlet-mapping>

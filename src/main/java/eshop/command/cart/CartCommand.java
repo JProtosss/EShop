@@ -1,6 +1,6 @@
 package eshop.command.cart;
 
-import eshop.command.CommandTemplate;
+import eshop.command.Command;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -11,9 +11,9 @@ import java.io.IOException;
 /**
  * @author Евгений
  */
-public class CartCommand extends CommandTemplate {
+public class CartCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, ServletException {
-        dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/cart.jsp"));
+        request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request,response);
     }
 }

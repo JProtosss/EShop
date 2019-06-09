@@ -27,6 +27,16 @@ public class Product {
         this.type=type;
     }
 
+    public Product(String name, String price, int amount, String description, Manufacturer manufacturer, Type type)
+    {
+        this.name = name;
+        this.price = price;
+        this.amount = amount;
+        this.description = description;
+        this.manufacturer=manufacturer;
+        this.type=type;
+    }
+
     public Product()
     {}
 

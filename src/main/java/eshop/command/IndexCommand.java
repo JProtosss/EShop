@@ -6,6 +6,7 @@ import eshop.entity.User;
 import eshop.entity.UserErrors;
 
 import javax.mail.MessagingException;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -14,7 +15,7 @@ import java.sql.SQLException;
 
 import static eshop.service.user.VerifyUser.verifyUserParams;
 
-public class IndexCommand extends CommandTemplate {
+public class IndexCommand implements Command {
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException, MessagingException, ServiceException, SQLException {
@@ -29,6 +30,9 @@ public class IndexCommand extends CommandTemplate {
             Command command=new AccountCommand();
             command.execute(request,response);
         }
-        dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/startPage.jsp"));
+        System.out.println(request.getRequestURI());
+        request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request,response);
+        //dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/startPage.jsp"));
     }
+
 }
