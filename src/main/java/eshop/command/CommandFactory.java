@@ -1,11 +1,13 @@
 package eshop.command;
 
 import eshop.command.cart.CartCommand;
-import eshop.command.item.ItemCommand;
+import eshop.command.product.EditProductCommand;
+import eshop.command.product.ProductCommand;
+import eshop.command.product.ProductInfoCommand;
 import eshop.command.user.*;
 import eshop.command.user.admin.BlacklistCommand;
 import eshop.command.user.admin.DeleteCommand;
-import eshop.command.user.admin.EditCommand;
+
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -18,11 +20,14 @@ public class CommandFactory {
         commands.put("auth", new AuthCommand());
         commands.put("signup", new SignUpCommand());
         commands.put("account", new AccountCommand());
-        commands.put("edit",new EditCommand());
+        commands.put("editProduct",new EditProductCommand());
+        commands.put("editUser",new EditUserCommand());
+        commands.put("infoUser",new UserInfoCommand());
+        commands.put("infoProduct",new ProductInfoCommand());
         commands.put("blacklist",new BlacklistCommand());
         commands.put("delete",new DeleteCommand());
         commands.put("cart", new CartCommand());
-        commands.put("item", new ItemCommand());
+        commands.put("product", new ProductCommand());
         commands.put("recover", new RecoverCommand());
         commands.put("logout", new LogOutCommand());
         commands.put("index", new IndexCommand());
@@ -31,33 +36,48 @@ public class CommandFactory {
     public static Command createCommand(HttpServletRequest request) {
 
         String value = request.getParameter("command");
-        String edit=request.getParameter("edit");
+        String editProduct=request.getParameter("editProduct");
+        String editUser=request.getParameter("editUser");
+        String infoProduct=request.getParameter("infoProduct");
+        String infoUser=request.getParameter("infoUser");
         String blacklist=request.getParameter("blacklist");
         String delete=request.getParameter("delete");
-        String item = request.getParameter("item");
+        String product = request.getParameter("product");
 
-        if (item != null) {
-            return commands.get("item");
-        }
         if (value != null) {
             return getCommandByParameter(value);
         }
+
+        if (editUser!=null)
+        {
+            return commands.get("editUser");
+        }
+
+        if (editProduct!=null)
+        {
+            return commands.get("editProduct");
+        }
+
+        if (infoProduct!=null)
+        {
+            return commands.get("infoProduct");
+        }
+
+        if (infoUser!=null)
+        {
+            return commands.get("infoUser");
+        }
+
+        if (product != null) {
+            return commands.get("product");
+        }
+
         if (blacklist!=null)
         {
             return commands.get("blacklist");
         }
 
         return commands.get("index");
-    }
-
-    private static String buildPathForSearch(HttpServletRequest request) {
-        String[] path = request.getServletPath().split("/");
-        if (path.length > 2) {
-            return path[1] + "/" + path[2];
-        }
-        if (path.length == 2)
-            return path[1];
-        return "";
     }
 
     private static Command getCommandByParameter(String value) {
@@ -70,8 +90,8 @@ public class CommandFactory {
                 return commands.get("account");
             case "cart":
                 return commands.get("cart");
-            case "item":
-                return commands.get("item");
+            case "product":
+                return commands.get("product");
             case "recover":
                 return commands.get("recover");
             case "language":

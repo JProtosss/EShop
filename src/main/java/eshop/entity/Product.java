@@ -1,5 +1,6 @@
 package eshop.entity;
 
+
 import java.sql.Blob;
 
 /**
@@ -12,20 +13,18 @@ public class Product {
     int amount;
     String description;
     Blob image;
-    String manufacturerName;
-    String manufacturerCountry;
-    String category;
+    Manufacturer manufacturer;
+    Type type;
 
-    public Product(int id, String name, String price, int amount, String description, Blob image, String manufacturerName, String manufacturerCountry, String category) {
+    public Product(int id, String name, String price, int amount, String description, Blob image, Manufacturer manufacturer, Type type) {
         this.id = id;
         this.name = name;
         this.price = price;
         this.amount = amount;
         this.description = description;
         this.image = image;
-        this.manufacturerName = manufacturerName;
-        this.manufacturerCountry = manufacturerCountry;
-        this.category = category;
+        this.manufacturer=manufacturer;
+        this.type=type;
     }
 
     public Product()
@@ -79,27 +78,19 @@ public class Product {
         this.image = image;
     }
 
-    public String getManufacturerName() {
-        return manufacturerName;
+    public Manufacturer getManufacturer() {
+        return manufacturer;
     }
 
-    public void setManufacturerName(String manufacturerName) {
-        this.manufacturerName = manufacturerName;
+    public void setManufacturer(Manufacturer manufacturer) {
+        this.manufacturer = manufacturer;
     }
 
-    public String getManufacturerCountry() {
-        return manufacturerCountry;
+    public Type getType() {
+        return type;
     }
 
-    public void setManufacturerCountry(String manufacturerCountry) {
-        this.manufacturerCountry = manufacturerCountry;
-    }
-
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
+    public void setType(Type type) {
+        this.type = type;
     }
 }

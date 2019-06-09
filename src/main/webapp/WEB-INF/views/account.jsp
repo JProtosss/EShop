@@ -11,12 +11,7 @@
 <html>
 <head>
     <title>Account</title>
-    <script src="../js/show.js"></script>
-
-    <link rel="stylesheet" href="../../style/style.css">
-    <link rel="stylesheet" href="../../style/startPage.css">
-    <link rel="stylesheet" href="../../style/font.css">
-    <link rel="stylesheet" href="../../style/font-awesome.css">
+    <c:import url="blocks/resources.jsp"/>
 </head>
 <body>
 
@@ -29,7 +24,7 @@
     <c:choose>
         <c:when test="${role ne 'admin' && role ne 'quest'}">
             <div class="w3">
-                <div class="w3-container w3-light-grey" id="contact">
+                <div class="w3-container w3-light-grey">
                     <h3 class="w3-center">Account</h3>
                     <form action="">
                         <p>
@@ -117,7 +112,7 @@
                                     <td>
                                         <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
                                                 style="outline: none" type="submit" name="edit"
-                                                value="${userInTable.getId()}">Edit
+                                                value="'user'${userInTable.getId()}">Edit
                                         </button>
                                     </td>
                                     <c:if test="${userInTable.getRole() ne 'admin'}">
@@ -149,68 +144,58 @@
             </div>
             <div class="w3-margin-top">
                 <h2>Goods</h2>
-                <div style="overflow-y: scroll;max-height: 600px;">
-                    <table class="w3-table-all w3-card-8 w3-border w3-bordered">
-                        <tbody>
-                        <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Amount</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Manufacturer</th>
-                            <th>Country</th>
-                            <th>Type</th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                            <th></th>
-                        </tr>
-                        <c:forEach var="productInTable" items="${productsList}">
+                <form method="post">
+                    <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-green"
+                            style="outline: none" type="submit" name="add">
+                        Add
+                    </button>
+                </form>
+                    <div style="overflow-y: scroll;max-height: 600px;">
+                        <table class="w3-table-all w3-card-8 w3-border w3-bordered">
+                            <tbody>
                             <tr>
-                                <td>${productInTable.getName()}</td>
-                                <td>${productInTable.getPrice()}</td>
-                                <td>${productInTable.getAmount()}</td>
-                                <td>${productInTable.getDescription()}</td>
-                                <td>${productInTable.getImage()}</td>
-                                <td>${productInTable.getManufacturerName()}</td>
-                                <td>${productInTable.getManufacturerCountry()}</td>
-                                <td>${productInTable.getCategory()}</td>
-                                <td>
-                                    <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
-                                            style="outline: none" type="submit" name="delete"
-                                            value="${productInTable.getId()}">
-                                        Add
-                                    </button>
-                                </td>
-                                <c:if test="${productInTable.getAmount() ne 0}">
-                                    <td>
-                                        <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
-                                                style="outline: none" type="submit" name="delete"
-                                                value="${productInTable.getId()}">
-                                            Take
-                                        </button>
-                                    </td>
-                                </c:if>
-                                <td>
-                                    <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-yellow"
-                                            style="outline: none" type="submit" name="delete"
-                                            value="${productInTable.getId()}">
-                                        Edit
-                                    </button>
-                                </td>
-                                <td>
-                                    <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
-                                            style="outline: none" type="submit" name="delete"
-                                            value="${productInTable.getId()}">
-                                        Remove
-                                    </button>
-                                </td>
+                                <th>Name</th>
+                                <th>Price</th>
+                                <th>Amount</th>
+                                <th>Description</th>
+                                <th>Image</th>
+                                <th>Manufacturer</th>
+                                <th>Country</th>
+                                <th>Type</th>
+                                <th></th>
+                                <th></th>
                             </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                </div>
+                            <c:forEach var="productInTable" items="${productsList}">
+                                <tr>
+                                    <td>${productInTable.getName()}</td>
+                                    <td>${productInTable.getPrice()}</td>
+                                    <td>${productInTable.getAmount()}</td>
+                                    <td>${productInTable.getDescription()}</td>
+                                    <td>${productInTable.getImage()}</td>
+                                    <td>${productInTable.getManufacturer().getName()}</td>
+                                    <td>${productInTable.getManufacturer().getCountry()}</td>
+                                    <td>${productInTable.getType().getType()}</td>
+                                    <form method="post">
+                                        <td>
+                                            <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
+                                                    style="outline: none" type="submit" name="infoProduct"
+                                                    value="${productInTable.getId()}">
+                                                Edit
+                                            </button>
+                                        </td>
+                                        <td>
+                                            <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
+                                                    style="outline: none" type="submit" name="delete"
+                                                    value="${productInTable}">
+                                                Remove
+                                            </button>
+                                        </td>
+                                    </form>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </div>
             </div>
         </c:otherwise>
     </c:choose>

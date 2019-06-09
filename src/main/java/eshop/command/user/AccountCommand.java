@@ -32,6 +32,7 @@ public class AccountCommand extends CommandTemplate {
             } catch (SQLException e) {
                 e.printStackTrace();
             }
+            request.getSession().setAttribute("userForUpdate","null");
             request.getSession().setAttribute("usersList", usersList);
             request.getSession().setAttribute("productsList", productsList);
             addCookies(request, response, (User) request.getSession().getAttribute("user"));

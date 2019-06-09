@@ -34,7 +34,6 @@ public class AuthCommand extends CommandTemplate {
         UserErrors userErrors = new UserErrors();
         boolean isAnyError = verifyUserParams(request, user, userErrors);
         if (!isAnyError) {
-            request.setAttribute("cookieOn","on");
             request.getSession().setAttribute("auth", true);
             request.getSession().setAttribute("user", user);
             logger.info("user logined");
@@ -43,11 +42,10 @@ public class AuthCommand extends CommandTemplate {
                 request.getSession().setAttribute("role","admin");
                 Command command = new AccountCommand();
                 command.execute(request, response);
-            }else  request.getSession().setAttribute("role","client");
+            }else request.getSession().setAttribute("role","client");
         } else response.sendRedirect(request.getRequestURI());
         dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/startPage.jsp"));
     }
-
 
 
 

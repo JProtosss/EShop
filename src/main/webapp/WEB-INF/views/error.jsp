@@ -1,13 +1,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html>
 <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <link rel="stylesheet" href="../../style/style.css">
-    <link rel="stylesheet" href="../../style/startPage.css">
-    <link rel="stylesheet" href="../../style/font.css">
-    <link rel="stylesheet" href="../../style/font-awesome.css">
+    <c:import url="blocks/resources.jsp"/>
     <title>error</title>
 </head>
 <body>

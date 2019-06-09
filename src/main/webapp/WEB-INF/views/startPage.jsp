@@ -30,6 +30,10 @@
      id="mySidebar">
     <a href="javascript:void(0)" onclick="w3_close()" class="w3-bar-item w3-button w3-large w3-padding-16">Close ×</a>
 </nav>
+<a href="javascript:void(0)" class="w3-bar-item w3-button w3-right w3-hide-large w3-hide-medium"
+   onclick="w3_open()" style="display: inline;">
+    <i class="fa fa-bars"></i>
+</a>
 <!-- Header with full-height image -->
 <header class="bgimg-1 w3-display-container w3-grayscale-min w3-animate-opacity" id="home">
     <div class="w3-display-left w3-text-white" style="padding:48px">
@@ -93,4 +97,20 @@
     <c:import url="blocks/footer.jsp"/>
 </footer>
 </body>
+<script>
+    var mySidebar = document.getElementById("mySidebar");
+
+
+    function w3_open() {
+        if (mySidebar.style.display === 'block') {
+            mySidebar.style.display = 'none';
+        } else {
+            mySidebar.style.display = 'block';
+        }
+    }
+
+    function w3_close() {
+        mySidebar.style.display = "none";
+    }
+</script>
 </html>

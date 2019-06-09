@@ -28,7 +28,7 @@
     <div class="w3-row-padding w3-grayscale" style="margin-top:15px">
         <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
-                <img src="../../images/xps.jpg" style="width:100%">
+                <img src="${pageContext.request.contextPath}/images/xps.jpg" style="width:100%">
                 <div class="w3-container">
                     <h3>Apple</h3>
                     <p class="w3-opacity">Model</p>
@@ -41,7 +41,7 @@
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
-                <img src="../../images/xps.jpg" style="width:100%">
+                <img src="${pageContext.request.contextPath}/images/xps.jpg" style="width:100%">
                 <div class="w3-container">
                     <h3>Lenovo</h3>
                     <p class="w3-opacity">Model</p>
@@ -54,7 +54,7 @@
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
-                <img src="../../images/xps.jpg" style="width:100%">
+                <img src="${pageContext.request.contextPath}/images/xps.jpg" style="width:100%">
                 <div class="w3-container">
                     <h3>Samsung</h3>
                     <p class="w3-opacity">Model</p>
@@ -67,7 +67,7 @@
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
-                <img src="../../images/xps.jpg" style="width:100%">
+                <img src="${pageContext.request.contextPath}/images/xps.jpg" style="width:100%">
                 <div class="w3-container">
                     <h3>Xiaomi</h3>
                     <p class="w3-opacity">Model</p>
@@ -80,7 +80,7 @@
         </div>
         <div class="w3-col l3 m6 w3-margin-bottom target">
             <div class=" w3-card">
-                <img src="../../images/xps.jpg" style="width:100%">
+                <img src="${pageContext.request.contextPath}/images/xps.jpg" style="width:100%">
                 <div class="w3-container">
                     <h3>Dell</h3>
                     <p class="w3-opacity">Model</p>
