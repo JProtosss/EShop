@@ -14,6 +14,7 @@ public class CRUDUser {
 
     final static ResourceBundle resourceBundle = ResourceBundle.getBundle("sqlstatements");
     final static String UPDATE_USER = resourceBundle.getString("UPDATE_USER");
+    final  static String REMOVE_USER=resourceBundle.getString("REMOVE_USER");
 
 
     public static void update(User user) throws SQLException {
@@ -27,6 +28,13 @@ public class CRUDUser {
         preparedStatement.setString(7,user.getRole());
         preparedStatement.setInt(8, user.getId());
         System.out.println(preparedStatement.toString());
+        preparedStatement.executeUpdate();
+    }
+
+
+    public static void delete(User user) throws SQLException {
+        PreparedStatement preparedStatement=DaoFactory.getConnection().prepareStatement(REMOVE_USER);
+        preparedStatement.setInt(1,user.getId());
         preparedStatement.executeUpdate();
     }
 

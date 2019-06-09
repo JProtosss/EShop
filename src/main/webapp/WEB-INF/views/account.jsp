@@ -71,7 +71,7 @@
                                         </td>
                                         <td>
                                             <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
-                                                    style="outline: none" type="submit" name="deleteUser"
+                                                    style="outline: none" type="submit" name="removeUser"
                                                     value="${userInTable.getId()}">
                                                 Remove
                                             </button>
@@ -127,7 +127,7 @@
                                     </td>
                                     <td>
                                         <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
-                                                style="outline: none" type="submit" name="deleteProduct"
+                                                style="outline: none" type="submit" name="removeProduct"
                                                 value="${productInTable.getId()}">
                                             Remove
                                         </button>

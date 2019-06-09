@@ -84,11 +84,11 @@
             <div class="w3-margin-top">
                 <button class="w3-padding-16 w3-left w3-button w3-border w3-round-medium w3-border-red"
                         type="submit" name="command" value="account">
-                    Cancel changes
+                    Cancel <c:if test="${productAdd eq null}">changes</c:if>
                 </button>
                 <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
                         type="submit" name="command" value="updateProduct">
-                    Save changes
+                    Save <c:if test="${productAdd eq null}">changes</c:if>
                 </button>
             </div>
             </c:when>

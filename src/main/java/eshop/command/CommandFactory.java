@@ -7,7 +7,7 @@ import eshop.command.product.ProductInfoCommand;
 import eshop.command.product.RemoveProductCommand;
 import eshop.command.user.*;
 import eshop.command.user.admin.BlacklistCommand;
-import eshop.command.user.admin.DeleteCommand;
+import eshop.command.user.admin.RemoveUserCommand;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -24,9 +24,9 @@ public class CommandFactory {
         commands.put("infoUser",new UserInfoCommand());
         commands.put("editProduct",new ProductInfoCommand());
         commands.put("updateProduct",new AddProductCommand());
-        commands.put("removeUser",new RemoveProductCommand());
+        commands.put("removeProduct",new RemoveProductCommand());
+        commands.put("removeUser",new RemoveUserCommand());
         commands.put("blacklist",new BlacklistCommand());
-        commands.put("delete",new DeleteCommand());
         commands.put("cart", new CartCommand());
         commands.put("product", new ProductCommand());
         commands.put("recover", new RecoverCommand());
@@ -41,7 +41,6 @@ public class CommandFactory {
         String editProduct=request.getParameter("editProduct");
         String removeProduct=request.getParameter("removeProduct");
         String blacklist=request.getParameter("blacklist");
-        String delete=request.getParameter("delete");
         String product = request.getParameter("product");
 
         if (value != null) {
