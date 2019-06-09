@@ -29,6 +29,7 @@ public class RecoverCommand implements Command {
         logger.info("starting recover");
         User user = getUserFromParameters(request);
         boolean userExist = findUser(user);
+        boolean flag=true;
         if (userExist) {
             EmailService emailService = new EmailService();
             PasswordService.generateNewPassword(user);
@@ -38,7 +39,6 @@ public class RecoverCommand implements Command {
             logger.info("recover succesfull");
         }else logger.info("recover not succesfull");
             response.sendRedirect(request.getRequestURI());
-
     }
 
     public User getUserFromParameters(HttpServletRequest request) {

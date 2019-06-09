@@ -25,16 +25,17 @@ public class SignUpCommand implements Command {
         request.getSession().removeAttribute("userError");
         UserErrors userErrors = new UserErrors();
         boolean isUserValid = persistUser(user, userErrors);
-
+        boolean flag=true;
         if (!isUserValid) {
             request.getSession().setAttribute("userError", userErrors);
             response.sendRedirect(request.getRequestURI());
+            flag=false;
         }
-
-        request.getSession().setAttribute("user", user);
-        request.getSession().setAttribute("auth", true);
-        request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request,response);
-
+        if (flag) {
+            request.getSession().setAttribute("user", user);
+            request.getSession().setAttribute("auth", true);
+            request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request, response);
+        }
     }
 
     private boolean persistUser(User user, UserErrors userErrors) {

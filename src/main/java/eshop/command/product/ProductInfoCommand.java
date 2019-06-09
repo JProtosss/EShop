@@ -18,8 +18,8 @@ import java.sql.SQLException;
 public class ProductInfoCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-int productId=Integer.parseInt(request.getParameter("infoProduct"));
-        request.removeAttribute("infoProduct");
+int productId=Integer.parseInt(request.getParameter("editProduct"));
+        request.removeAttribute("editProduct");
         DaoManufacturer daoManufacturer = new DaoManufacturer();
         DaoCategory daoCategory = new DaoCategory();
         try{

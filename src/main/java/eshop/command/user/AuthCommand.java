@@ -42,7 +42,8 @@ public class AuthCommand implements Command {
                 Command command = new AccountCommand();
                 command.execute(request, response);
             }else request.getSession().setAttribute("role","client");
-        } else response.sendRedirect(request.getRequestURI());
+        }
+        else { flag=false; response.sendRedirect(request.getRequestURI());}
 if (flag) request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request,response);
 
     }

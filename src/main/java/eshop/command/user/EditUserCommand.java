@@ -15,7 +15,9 @@ import java.sql.SQLException;
  */
 public class EditUserCommand implements Command {
     @Override
-    public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
 
+        Command command=new AccountCommand();
+        command.execute(request,response);
     }
 }

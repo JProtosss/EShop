@@ -42,41 +42,43 @@
                             <th></th>
                         </tr>
                         <c:forEach var="userInTable" items="${usersList}">
-                            <tr>
-                                <td>${userInTable.getUsername()}</td>
-                                <td>${userInTable.getEmail()}</td>
-                                <td>${userInTable.getFirstname()}</td>
-                                <td>${userInTable.getLastname()}</td>
-                                <td>${userInTable.getRole()}</td>
-                                <form method="post">
-                                    <td>
-                                        <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
-                                                style="outline: none" type="submit" name="edit"
-                                                value="'user'${userInTable.getId()}">Edit
-                                        </button>
-                                    </td>
-                                    <c:if test="${userInTable.getRole() ne 'admin'}">
+                            <c:if test="${userInTable.getRole() ne 'admin'}">
+                                <tr>
+                                    <td>${userInTable.getUsername()}</td>
+                                    <td>${userInTable.getEmail()}</td>
+                                    <td>${userInTable.getFirstname()}</td>
+                                    <td>${userInTable.getLastname()}</td>
+                                    <td>${userInTable.getRole()}</td>
+                                    <form method="post">
                                         <td>
-                                            <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
-                                                    style="outline: none" type="submit" name="blacklist"
-                                                    value="${userInTable.getId()}">
-                                                <c:choose>
-                                                    <c:when test="${userInTable.getRole() eq 'blocked_client'}">Delete from backlist</c:when>
-                                                    <c:otherwise>Add to Blacklist
-                                                    </c:otherwise>
-                                                </c:choose>
+                                            <c:choose>
+                                                <c:when test="${userInTable.getRole() eq 'blocked_client'}">
+                                                    <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
+                                                            style="outline: none" type="submit" name="blacklist"
+                                                            value="${userInTable.getId()}">
+                                                        Delete from backlist
+                                                    </button>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
+                                                            style="outline: none" type="submit" name="blacklist"
+                                                            value="${userInTable.getId()}">
+                                                        Add to blacklits
+                                                    </button>
+                                                </c:otherwise>
+                                            </c:choose>
                                             </button>
                                         </td>
                                         <td>
                                             <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
-                                                    style="outline: none" type="submit" name="delete"
+                                                    style="outline: none" type="submit" name="deleteUser"
                                                     value="${userInTable.getId()}">
                                                 Remove
                                             </button>
                                         </td>
-                                    </c:if>
-                                </form>
-                            </tr>
+                                    </form>
+                                </tr>
+                            </c:if>
                         </c:forEach>
                         </tbody>
                     </table>
@@ -86,56 +88,56 @@
                 <h2>Goods</h2>
                 <form method="post">
                     <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-green"
-                            style="outline: none" type="submit" name="infoProduct" value="-1">
+                            style="outline: none" type="submit" name="editProduct" value="-1">
                         Add
                     </button>
                 </form>
-                    <div style="overflow-y: scroll;max-height: 600px;">
-                        <table class="w3-table-all w3-card-8 w3-border w3-bordered">
-                            <tbody>
+                <div style="overflow-y: scroll;max-height: 600px;">
+                    <table class="w3-table-all w3-card-8 w3-border w3-bordered">
+                        <tbody>
+                        <tr>
+                            <th>Name</th>
+                            <th>Price</th>
+                            <th>Amount</th>
+                            <th>Description</th>
+                            <th>Image</th>
+                            <th>Manufacturer</th>
+                            <th>Country</th>
+                            <th>Type</th>
+                            <th></th>
+                            <th></th>
+                        </tr>
+                        <c:forEach var="productInTable" items="${productsList}">
                             <tr>
-                                <th>Name</th>
-                                <th>Price</th>
-                                <th>Amount</th>
-                                <th>Description</th>
-                                <th>Image</th>
-                                <th>Manufacturer</th>
-                                <th>Country</th>
-                                <th>Type</th>
-                                <th></th>
-                                <th></th>
+                                <td>${productInTable.getName()}</td>
+                                <td>${productInTable.getPrice()}</td>
+                                <td>${productInTable.getAmount()}</td>
+                                <td>${productInTable.getDescription()}</td>
+                                <td>${productInTable.getImage()}</td>
+                                <td>${productInTable.getManufacturer().getName()}</td>
+                                <td>${productInTable.getManufacturer().getCountry()}</td>
+                                <td>${productInTable.getType().getType()}</td>
+                                <form method="post">
+                                    <td>
+                                        <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
+                                                style="outline: none" type="submit" name="editProduct"
+                                                value="${productInTable.getId()}">
+                                            Edit
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
+                                                style="outline: none" type="submit" name="deleteProduct"
+                                                value="${productInTable.getId()}">
+                                            Remove
+                                        </button>
+                                    </td>
+                                </form>
                             </tr>
-                            <c:forEach var="productInTable" items="${productsList}">
-                                <tr>
-                                    <td>${productInTable.getName()}</td>
-                                    <td>${productInTable.getPrice()}</td>
-                                    <td>${productInTable.getAmount()}</td>
-                                    <td>${productInTable.getDescription()}</td>
-                                    <td>${productInTable.getImage()}</td>
-                                    <td>${productInTable.getManufacturer().getName()}</td>
-                                    <td>${productInTable.getManufacturer().getCountry()}</td>
-                                    <td>${productInTable.getType().getType()}</td>
-                                    <form method="post">
-                                        <td>
-                                            <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
-                                                    style="outline: none" type="submit" name="infoProduct"
-                                                    value="${productInTable.getId()}">
-                                                Edit
-                                            </button>
-                                        </td>
-                                        <td>
-                                            <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
-                                                    style="outline: none" type="submit" name="delete"
-                                                    value="${productInTable}">
-                                                Remove
-                                            </button>
-                                        </td>
-                                    </form>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                    </div>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </c:otherwise>
     </c:choose>

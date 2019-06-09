@@ -87,7 +87,7 @@
                     Cancel changes
                 </button>
                 <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
-                        type="submit" name="command" value="addProduct">
+                        type="submit" name="command" value="updateProduct">
                     Save changes
                 </button>
             </div>

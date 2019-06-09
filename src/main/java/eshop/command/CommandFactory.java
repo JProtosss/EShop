@@ -2,13 +2,12 @@ package eshop.command;
 
 import eshop.command.cart.CartCommand;
 import eshop.command.product.AddProductCommand;
-import eshop.command.product.EditProductCommand;
 import eshop.command.product.ProductCommand;
 import eshop.command.product.ProductInfoCommand;
+import eshop.command.product.RemoveProductCommand;
 import eshop.command.user.*;
 import eshop.command.user.admin.BlacklistCommand;
 import eshop.command.user.admin.DeleteCommand;
-import eshop.entity.Product;
 
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,11 +21,10 @@ public class CommandFactory {
         commands.put("auth", new AuthCommand());
         commands.put("signup", new SignUpCommand());
         commands.put("account", new AccountCommand());
-        commands.put("editProduct",new EditProductCommand());
-        commands.put("editUser",new EditUserCommand());
         commands.put("infoUser",new UserInfoCommand());
-        commands.put("infoProduct",new ProductInfoCommand());
-        commands.put("addProduct",new AddProductCommand());
+        commands.put("editProduct",new ProductInfoCommand());
+        commands.put("updateProduct",new AddProductCommand());
+        commands.put("removeUser",new RemoveProductCommand());
         commands.put("blacklist",new BlacklistCommand());
         commands.put("delete",new DeleteCommand());
         commands.put("cart", new CartCommand());
@@ -39,11 +37,9 @@ public class CommandFactory {
     public static Command createCommand(HttpServletRequest request) {
 
         String value = request.getParameter("command");
+        String removeUser=request.getParameter("removeUser");
         String editProduct=request.getParameter("editProduct");
-        String editUser=request.getParameter("editUser");
-        String infoProduct=request.getParameter("infoProduct");
-
-        String infoUser=request.getParameter("infoUser");
+        String removeProduct=request.getParameter("removeProduct");
         String blacklist=request.getParameter("blacklist");
         String delete=request.getParameter("delete");
         String product = request.getParameter("product");
@@ -52,27 +48,22 @@ public class CommandFactory {
             return getCommandByParameter(value);
         }
 
-        if (editUser!=null)
+        if (removeProduct!=null)
         {
-            request.removeAttribute("editUser");
-            return commands.get("editUser");
+            return commands.get("removeProduct");
         }
+
+        if (removeUser!=null)
+        {
+            return commands.get("removeUser");
+        }
+
 
         if (editProduct!=null)
         {
             return commands.get("editProduct");
         }
 
-        if (infoProduct!=null)
-        {
-            return commands.get("infoProduct");
-        }
-
-        if (infoUser!=null)
-        {
-            request.removeAttribute("infoUser");
-            return commands.get("infoUser");
-        }
 
         if (product != null) {
             return commands.get("product");
@@ -96,8 +87,8 @@ public class CommandFactory {
                 return commands.get("account");
             case "cart":
                 return commands.get("cart");
-            case "addproduct":
-                return commands.get("addProduct");
+            case "updateproduct":
+                return commands.get("updateProduct");
             case "product":
                 return commands.get("product");
             case "recover":

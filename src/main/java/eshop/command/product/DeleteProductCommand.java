@@ -13,7 +13,7 @@ import java.sql.SQLException;
 /**
  * @author Евгений
  */
-public class EditProductCommand implements Command {
+public class DeleteProductCommand implements Command {
     @Override
     public void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
 
