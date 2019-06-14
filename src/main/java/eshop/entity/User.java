@@ -14,6 +14,7 @@ public class User {
     private String address;
     private String chosenProducts;
     private String role;
+    private int amountOfOrders;
 
     public User() {
     }
@@ -105,5 +106,13 @@ public class User {
 
     public void setChosenProducts(String chosenProducts) {
         this.chosenProducts = chosenProducts;
+    }
+
+    public int getAmountOfOrders() {
+        return amountOfOrders;
+    }
+
+    public void setAmountOfOrders(int amountOfOrders) {
+        this.amountOfOrders = amountOfOrders;
     }
 }

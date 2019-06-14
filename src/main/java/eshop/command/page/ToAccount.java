@@ -1,6 +1,7 @@
 package eshop.command.page;
 
 import eshop.command.Command;
+import eshop.dao.DaoOrder;
 import eshop.dao.DaoProduct;
 import eshop.dao.DaoUser;
 import eshop.entity.Product;
@@ -21,18 +22,23 @@ import static eshop.service.CookieService.addCookies;
  */
 public class ToAccount implements Command {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
         request.getSession().removeAttribute("command");
         if (request.getSession().getAttribute("role")=="admin") {
             List<User> usersList = new ArrayList<>();
             List<Product> productsList=new ArrayList<>();
             DaoUser daoUser = new DaoUser();
             DaoProduct daoProduct=new DaoProduct();
+            DaoOrder daoOrder=new DaoOrder();
             try {
                 usersList = daoUser.findAll();
                 productsList=daoProduct.findProducts();
+
             } catch (SQLException e) {
                 e.printStackTrace();
+            }
+            for (User user:usersList) {
+                user.setAmountOfOrders(daoOrder.countOrdersByUserId(user.getId()));
             }
             request.getSession().setAttribute("product", null);
             request.getSession().setAttribute("userForUpdate","null");

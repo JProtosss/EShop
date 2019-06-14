@@ -3,8 +3,6 @@ package eshop.dao;
 import com.google.protobuf.ServiceException;
 import eshop.entity.User;
 import eshop.service.PasswordService;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

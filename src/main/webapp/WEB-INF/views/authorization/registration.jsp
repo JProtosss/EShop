@@ -25,10 +25,10 @@
             <label><b>E-mail</b></label>
             <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="email" name="email" id="email"
                    required>
-            <label><b>Name</b></label>
+            <label><b>Firstname</b></label>
             <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Name" name="firstname"
                    id="firstname" required>
-            <label><b>Surname</b></label>
+            <label><b>Lastname</b></label>
             <input class="w3-input w3-border w3-margin-bottom" type="text" placeholder="Surname" name="lastname"
                    id="lastname" required>
             <label><b>Address</b></label>

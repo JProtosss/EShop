@@ -1,8 +1,6 @@
 package eshop.entity;
 
 
-import java.sql.Blob;
-
 /**
  * @author Евгений
  */

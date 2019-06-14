@@ -5,7 +5,6 @@ import eshop.command.Command;
 import eshop.command.page.ToAccount;
 import eshop.dao.DaoCategory;
 import eshop.dao.DaoManufacturer;
-import eshop.dao.DaoProduct;
 import eshop.entity.Product;
 import eshop.service.product.CRUDProduct;
 

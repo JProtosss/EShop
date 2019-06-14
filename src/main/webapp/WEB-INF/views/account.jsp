@@ -23,7 +23,38 @@
 <div class="w3-container w3-light-grey" style="padding:128px 16px">
     <c:choose>
         <c:when test="${role ne 'admin' && role ne null}">
-
+            <div class="w3-margin-top w3-margin-bottom">
+                <form method="post" action="/account" class="w3-container">
+                    <h4>Username:</h4>
+                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                           value="${user.getUsername()}" name="username">
+                    <h4>Password:</h4>
+                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                           value="" name="password">
+                    <h4>Confirm password:</h4>
+                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                           value="" name="confirmPassword">
+                    <h4>Email:</h4>
+                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                           value="${user.getEmail()}" name="email">
+                    <h4>Firstname:</h4>
+                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                           value="${user.getFirstname()}" name="firstname">
+                    <h4>Lastname:</h4>
+                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                           value="${user.getLastname()}"
+                           name="lastname">
+                    <h4>Address:</h4>
+                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                           value="${user.getAddress()}" name="address">
+                    <div class="w3-margin-top">
+                        <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
+                                type="submit" name="command" value="updateUser">
+                            Save
+                        </button>
+                    </div>
+                </form>
+            </div>
         </c:when>
         <c:otherwise>
             <div class="w3-margin-top w3-margin-bottom">
@@ -36,8 +67,8 @@
                             <th>Email</th>
                             <th>Firstname</th>
                             <th>Lastname</th>
+                            <th>Amount of orders</th>
                             <th>Role</th>
-                            <th></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -48,6 +79,7 @@
                                     <td>${userInTable.getEmail()}</td>
                                     <td>${userInTable.getFirstname()}</td>
                                     <td>${userInTable.getLastname()}</td>
+                                    <td>${userInTable.getAmountOfOrders()}</td>
                                     <td>${userInTable.getRole()}</td>
                                     <form method="post" action="">
                                         <input type="hidden" name="user_id" value="${userInTable.getId()}">

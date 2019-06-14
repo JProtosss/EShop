@@ -85,7 +85,7 @@
                 </button>
                 <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
                         type="submit" name="command" value="updateProduct">
-                    Save <c:if test="${productAdd ne null}">changes</c:if>
+                    Save <c:if test="${product ne null}">changes</c:if>
                 </button>
             </div>
         </form>

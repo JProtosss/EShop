@@ -4,7 +4,6 @@ import eshop.command.Command;
 import eshop.dao.DaoCategory;
 import eshop.dao.DaoManufacturer;
 import eshop.dao.DaoProduct;
-import eshop.entity.Product;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -36,7 +35,6 @@ public class ToEditPage implements Command {
             int productId=Integer.parseInt(request.getParameter("product_id"));
             DaoProduct daoProduct = new DaoProduct();
             try {
-                request.getSession().setAttribute("productAdd",null);
                 request.getSession().setAttribute("product", daoProduct.findById(productId));
             } catch (SQLException e) {
                 e.printStackTrace();

@@ -12,19 +12,11 @@
 <div class="w3-bar w3-white w3-card" id="myNavbar">
     <c:choose>
         <c:when test="${auth}">
-
-            <c:if test="${role ne 'admin' && role ne 'quest'}">
                 <form method="post" action="/account" style="display: inline;">
                     <button name="command" class="w3-button w3-bar-item fa-lg" value="account" type="submit"
                             style="padding: 19.5px;"><i class="fa fa-user" aria-hidden="true"></i>
                     </button>
                 </form>
-                <form method="post" action="/cart" style="display: inline;">
-                    <button name="command" class="w3-button w3-bar-item fa-lg" value="cart" type="submit"
-                            style="padding: 19.5px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
-                    </button>
-                </form>
-            </c:if>
             <form method="post" style="display: inline;">
                 <button name="command" class="w3-button w3-bar-item fa-lg" value="logout" type="submit"
                         style="padding: 19.5px;"><i class="fa fa-sign-out" aria-hidden="true"></i></button>

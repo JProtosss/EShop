@@ -4,7 +4,6 @@ import com.google.protobuf.ServiceException;
 import eshop.command.Command;
 import eshop.command.CommandFactory;
 import eshop.dao.DaoFactory;
-import eshop.dao.DaoUser;
 import eshop.entity.User;
 import org.apache.commons.beanutils.BeanUtils;
 

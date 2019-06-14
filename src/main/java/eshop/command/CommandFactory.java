@@ -2,12 +2,11 @@ package eshop.command;
 
 import eshop.command.page.*;
 import eshop.command.product.MakeOrderCommand;
-import eshop.command.product.UpdateProductCommand;
 import eshop.command.product.RemoveProductCommand;
+import eshop.command.product.UpdateProductCommand;
 import eshop.command.user.*;
 import eshop.command.user.admin.BlacklistCommand;
 import eshop.command.user.admin.RemoveUserCommand;
-
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
@@ -27,11 +26,12 @@ public class CommandFactory {
         commands.put("blacklist", new BlacklistCommand());
         commands.put("cart", new ToCart());
         commands.put("orderPage",new ToOrderPage());
-        commands.put("order",new MakeOrderCommand());
+        commands.put("makeOrder",new MakeOrderCommand());
         commands.put("product", new ToProductPage());
         commands.put("recover", new RecoverCommand());
         commands.put("logout", new LogOutCommand());
         commands.put("index", new IndexCommand());
+        commands.put("updateUser",new UpdateUser());
     }
 
     public static Command createCommand(HttpServletRequest request) {
@@ -50,7 +50,9 @@ public class CommandFactory {
             case "auth":
                 return commands.get("auth");
             case "orderpage":
-                return commands.get("orederPage");
+                return commands.get("orderPage");
+            case "makeorder":
+                return commands.get("makeOrder");
             case "editproduct":
                 return commands.get("editProduct");
             case "removeproduct":
@@ -75,6 +77,8 @@ public class CommandFactory {
                 return commands.get("language");
             case "logout":
                 return commands.get("logout");
+            case "updateuser":
+                return commands.get("updateUser");
             default:
                 return commands.get("index");
         }

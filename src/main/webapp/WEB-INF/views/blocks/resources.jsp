@@ -11,7 +11,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <script src="${pageContext.request.contextPath}/js/show.js"></script>
-
+<script src="https://www.google.com/recaptcha/api.js"></script>
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/style.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/startPage.css">
 <link rel="stylesheet" href="${pageContext.request.contextPath}/style/font.css">
