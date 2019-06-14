@@ -1,4 +1,4 @@
-package eshop.command.user;
+package eshop.command.product;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
@@ -13,11 +13,9 @@ import java.sql.SQLException;
 /**
  * @author Евгений
  */
-public class EditUserCommand implements Command {
+public class MakeOrderCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
-
-        Command command=new AccountCommand();
-        command.execute(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/account.jsp").forward(request,response);
     }
 }

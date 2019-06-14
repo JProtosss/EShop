@@ -20,30 +20,27 @@
 
 <div class="w3-container w3-light-grey" style="padding:128px 16px">
     <div class="w3-margin-top w3-margin-bottom">
-
-        <c:choose>
-        <c:when test="${userForUpdate eq 'null'}">
-        <form method="post" action="" class="w3-container">
+        <form method="post" action="/account" class="w3-container">
             <h4>Name:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="<c:if test="${productAdd eq null}">${product.getName()}</c:if>" name="productName">
+                   value="<c:if test="${product ne null}">${product.getName()}</c:if>" name="productName">
             <h4>Price:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="<c:if test="${productAdd eq null}">${product.getPrice()}</c:if>" name="productPrice">
+                   value="<c:if test="${product ne null}">${product.getPrice()}</c:if>" name="productPrice">
             <h4>Amount:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="<c:if test="${productAdd eq null}">${product.getAmount()}</c:if>" name="productAmount">
+                   value="<c:if test="${product ne null}">${product.getAmount()}</c:if>" name="productAmount">
             <h4>Description:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="<c:if test="${productAdd eq null}">${product.getDescription()}</c:if>" name="productDescription">
+                   value="<c:if test="${product ne null}">${product.getDescription()}</c:if>" name="productDescription">
             <h4>Image:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
-                   value="<c:if test="${productAdd eq null}">${product.getImage()}</c:if>" name="productImage">
+                   value="<c:if test="${product ne null}">${product.getImage()}</c:if>" name="productImage">
             <h4>Manufacturer:</h4>
             <select class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none" name="manufacturerName">
                 <c:forEach var="manufacturer" items="${manufacturers}">
                     <c:choose>
-                        <c:when test="${productAdd eq null}">
+                        <c:when test="${product ne null}">
                             <c:choose>
                                 <c:when test="${product.getManufacturer().getName() eq manufacturer.getName()}">
                                     <option selected="selected"
@@ -64,7 +61,7 @@
             <select class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none" name="productType">
                 <c:forEach var="type" items="${types}">
                     <c:choose>
-                        <c:when test="${productAdd eq null}">
+                        <c:when test="${product ne null}">
                             <c:choose>
                                 <c:when test="${product.getType().getType() eq type.getType()}">
                                     <option selected="selected" value="${type.getType()}">${type.getType()}</option>
@@ -84,19 +81,13 @@
             <div class="w3-margin-top">
                 <button class="w3-padding-16 w3-left w3-button w3-border w3-round-medium w3-border-red"
                         type="submit" name="command" value="account">
-                    Cancel <c:if test="${productAdd eq null}">changes</c:if>
+                    Cancel <c:if test="${product ne null}">changes</c:if>
                 </button>
                 <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
                         type="submit" name="command" value="updateProduct">
-                    Save <c:if test="${productAdd eq null}">changes</c:if>
+                    Save <c:if test="${productAdd ne null}">changes</c:if>
                 </button>
             </div>
-            </c:when>
-            <c:otherwise>
-                <h4>oops</h4>
-            </c:otherwise>
-            </c:choose>
-
         </form>
     </div>
 </div>

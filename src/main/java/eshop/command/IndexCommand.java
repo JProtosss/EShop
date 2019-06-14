@@ -1,19 +1,14 @@
 package eshop.command;
 
 import com.google.protobuf.ServiceException;
-import eshop.command.user.AccountCommand;
-import eshop.entity.User;
-import eshop.entity.UserErrors;
+import eshop.command.page.ToAccount;
 
 import javax.mail.MessagingException;
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
-
-import static eshop.service.user.VerifyUser.verifyUserParams;
 
 public class IndexCommand implements Command {
 
@@ -25,13 +20,14 @@ public class IndexCommand implements Command {
 //            request.getSession().setAttribute("user", user);
 //            request.getSession().setAttribute("auth",false);
 //        }
+        boolean flag=true;
         if (request.getSession().getAttribute("role")=="admin")
         {
-            Command command=new AccountCommand();
+            flag=false;
+            Command command=new ToAccount();
             command.execute(request,response);
         }
-        System.out.println(request.getRequestURI());
-        request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request,response);
+        if (flag)  request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request,response);
         //dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/startPage.jsp"));
     }
 

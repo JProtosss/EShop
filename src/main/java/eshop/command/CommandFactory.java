@@ -1,9 +1,8 @@
 package eshop.command;
 
-import eshop.command.cart.CartCommand;
-import eshop.command.product.AddProductCommand;
-import eshop.command.product.ProductCommand;
-import eshop.command.product.ProductInfoCommand;
+import eshop.command.page.*;
+import eshop.command.product.MakeOrderCommand;
+import eshop.command.product.UpdateProductCommand;
 import eshop.command.product.RemoveProductCommand;
 import eshop.command.user.*;
 import eshop.command.user.admin.BlacklistCommand;
@@ -20,15 +19,16 @@ public class CommandFactory {
     static {
         commands.put("auth", new AuthCommand());
         commands.put("signup", new SignUpCommand());
-        commands.put("account", new AccountCommand());
-        commands.put("infoUser",new UserInfoCommand());
-        commands.put("editProduct",new ProductInfoCommand());
-        commands.put("updateProduct",new AddProductCommand());
-        commands.put("removeProduct",new RemoveProductCommand());
-        commands.put("removeUser",new RemoveUserCommand());
-        commands.put("blacklist",new BlacklistCommand());
-        commands.put("cart", new CartCommand());
-        commands.put("product", new ProductCommand());
+        commands.put("account", new ToAccount());
+        commands.put("editProduct", new ToEditPage());
+        commands.put("updateProduct", new UpdateProductCommand());
+        commands.put("removeProduct", new RemoveProductCommand());
+        commands.put("removeUser", new RemoveUserCommand());
+        commands.put("blacklist", new BlacklistCommand());
+        commands.put("cart", new ToCart());
+        commands.put("orderPage",new ToOrderPage());
+        commands.put("order",new MakeOrderCommand());
+        commands.put("product", new ToProductPage());
         commands.put("recover", new RecoverCommand());
         commands.put("logout", new LogOutCommand());
         commands.put("index", new IndexCommand());
@@ -37,40 +37,9 @@ public class CommandFactory {
     public static Command createCommand(HttpServletRequest request) {
 
         String value = request.getParameter("command");
-        String removeUser=request.getParameter("removeUser");
-        String editProduct=request.getParameter("editProduct");
-        String removeProduct=request.getParameter("removeProduct");
-        String blacklist=request.getParameter("blacklist");
-        String product = request.getParameter("product");
 
         if (value != null) {
             return getCommandByParameter(value);
-        }
-
-        if (removeProduct!=null)
-        {
-            return commands.get("removeProduct");
-        }
-
-        if (removeUser!=null)
-        {
-            return commands.get("removeUser");
-        }
-
-
-        if (editProduct!=null)
-        {
-            return commands.get("editProduct");
-        }
-
-
-        if (product != null) {
-            return commands.get("product");
-        }
-
-        if (blacklist!=null)
-        {
-            return commands.get("blacklist");
         }
 
         return commands.get("index");
@@ -80,12 +49,22 @@ public class CommandFactory {
         switch (value.toLowerCase()) {
             case "auth":
                 return commands.get("auth");
+            case "orderpage":
+                return commands.get("orederPage");
+            case "editproduct":
+                return commands.get("editProduct");
+            case "removeproduct":
+                return commands.get("removeProduct");
             case "signup":
                 return commands.get("signup");
             case "account":
                 return commands.get("account");
             case "cart":
                 return commands.get("cart");
+            case "removeuser":
+                return commands.get("removeUser");
+            case "blacklist":
+                return commands.get("blacklist");
             case "updateproduct":
                 return commands.get("updateProduct");
             case "product":

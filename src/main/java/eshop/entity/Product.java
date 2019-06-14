@@ -12,11 +12,11 @@ public class Product {
     String price;
     int amount;
     String description;
-    Blob image;
+    String image;
     Manufacturer manufacturer;
     Type type;
 
-    public Product(int id, String name, String price, int amount, String description, Blob image, Manufacturer manufacturer, Type type) {
+    public Product(int id, String name, String price, int amount, String description, String image, Manufacturer manufacturer, Type type) {
         this.id = id;
         this.name = name;
         this.price = price;
@@ -80,11 +80,11 @@ public class Product {
         this.description = description;
     }
 
-    public Blob getImage() {
+    public String getImage() {
         return image;
     }
 
-    public void setImage(Blob image) {
+    public void setImage(String image) {
         this.image = image;
     }
 

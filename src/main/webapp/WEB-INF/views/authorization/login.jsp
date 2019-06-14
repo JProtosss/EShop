@@ -13,7 +13,7 @@
         <span onclick="document.getElementById('login').style.display='none'"
               class="w3-button w3-xlarge w3-hover-red w3-display-topright w3-padding" title="Close">&times;</span>
     </div>
-    <form method="post" action="" class="w3-container">
+    <form method="post" action="/account" class="w3-container">
         <div class="w3-section w3-large">
 
             <%--Username field begin --%>

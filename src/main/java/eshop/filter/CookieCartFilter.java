@@ -1,15 +1,15 @@
 package eshop.filter;
 
 import javax.servlet.*;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
  * @author Евгений
  */
-public class SessionFilter implements Filter{
+public class CookieCartFilter implements Filter {
     @Override
     public void init(FilterConfig filterConfig) throws ServletException {
 
@@ -17,15 +17,15 @@ public class SessionFilter implements Filter{
 
     @Override
     public void doFilter(ServletRequest servletRequest, ServletResponse servletResponse, FilterChain filterChain) throws IOException, ServletException {
-        HttpServletRequest request = (HttpServletRequest)servletRequest;
+        HttpServletRequest request=(HttpServletRequest) servletRequest;
         HttpServletResponse response=(HttpServletResponse) servletResponse;
-        HttpSession session = request.getSession(true);
+        Cookie ck[]=request.getCookies();
+        if (ck.length==0)
+        {
+            Cookie cookie=new Cookie("cart","");
+            response.addCookie(cookie);
+        }
 
-        if (session.getAttribute("logined")!=null)
-            if (!(Boolean)session.getAttribute("logined"))
-                ((HttpServletResponse) servletResponse).sendRedirect("/");
-
-        filterChain.doFilter(servletRequest, servletResponse);
     }
 
     @Override

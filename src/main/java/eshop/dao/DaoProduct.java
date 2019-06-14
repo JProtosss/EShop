@@ -54,7 +54,7 @@ public class DaoProduct {
         String price = resultSet.getString("price");
         int amount = resultSet.getInt("amount");
         String description = resultSet.getString("description");
-        Blob image=resultSet.getBlob("image");
+        String image=resultSet.getString("image");
         int manufacturer_id=resultSet.getInt("manufacturer_id");
         String manufacturerName=resultSet.getString("manufacturerName");
         String manufacturerCountry=resultSet.getString("country");

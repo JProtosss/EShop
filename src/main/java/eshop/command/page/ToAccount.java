@@ -1,4 +1,4 @@
-package eshop.command.user;
+package eshop.command.page;
 
 import eshop.command.Command;
 import eshop.dao.DaoProduct;
@@ -19,10 +19,10 @@ import static eshop.service.CookieService.addCookies;
 /**
  * @author Евгений
  */
-public class AccountCommand implements Command {
+public class ToAccount implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
-            request.getSession().removeAttribute("command");
+        request.getSession().removeAttribute("command");
         if (request.getSession().getAttribute("role")=="admin") {
             List<User> usersList = new ArrayList<>();
             List<Product> productsList=new ArrayList<>();
@@ -41,8 +41,7 @@ public class AccountCommand implements Command {
             request.getSession().setAttribute("productsList", productsList);
             addCookies(request, response, (User) request.getSession().getAttribute("user"));
         }
-        System.out.println(request.getRequestURI());
         request.getRequestDispatcher("/WEB-INF/views/account.jsp").forward(request,response);
-       //dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/account.jsp"));
+        //dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/account.jsp"));
     }
 }

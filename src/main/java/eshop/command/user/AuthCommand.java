@@ -2,6 +2,7 @@ package eshop.command.user;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
+import eshop.command.page.ToAccount;
 import eshop.entity.User;
 import eshop.entity.UserErrors;
 import org.apache.commons.beanutils.BeanUtils;
@@ -30,21 +31,20 @@ public class AuthCommand implements Command {
         User user = getUserFromParameters(request);
         UserErrors userErrors = new UserErrors();
         boolean isAnyError = verifyUserParams(request, user, userErrors);
-        boolean flag=true;
+        boolean flag = true;
         if (!isAnyError) {
             request.getSession().setAttribute("auth", true);
             request.getSession().setAttribute("user", user);
-            logger.info("user logined");
+            request.getSession().setAttribute("logined",true);
             addCookies(request, response, user);
             if (user.getRole().equals("admin")) {
-                flag=false;
-                request.getSession().setAttribute("role","admin");
-                Command command = new AccountCommand();
+                flag = false;
+                request.getSession().setAttribute("role", "admin");
+                Command command = new ToAccount();
                 command.execute(request, response);
-            }else request.getSession().setAttribute("role","client");
-        }
-        else { flag=false; response.sendRedirect(request.getRequestURI());}
-if (flag) request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request,response);
+            } else request.getSession().setAttribute("role", "client");
+        }else request.getSession().setAttribute("logined",true);
+        if (flag) response.sendRedirect("/");
 
     }
 

@@ -54,9 +54,7 @@ public class MainServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//        clearSessionInvalidUser(request);
-//        setLocale(request);
-//        autorizeByCookies(request);
+
         Command command = CommandFactory.createCommand(request);
         try {
             command.execute(request, response);
@@ -67,7 +65,6 @@ public class MainServlet extends HttpServlet {
         } catch (ServiceException e) {
             e.printStackTrace();
         }
-
     }
 
 

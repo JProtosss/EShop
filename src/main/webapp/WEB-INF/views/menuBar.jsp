@@ -12,41 +12,58 @@
 <div class="w3-bar w3-white w3-card" id="myNavbar">
     <c:choose>
         <c:when test="${auth}">
-            <form method="post" action="" style="display: inline;">
-                <c:if test="${role ne 'admin' && role ne 'quest'}">
+
+            <c:if test="${role ne 'admin' && role ne 'quest'}">
+                <form method="post" action="/account" style="display: inline;">
                     <button name="command" class="w3-button w3-bar-item fa-lg" value="account" type="submit"
                             style="padding: 19.5px;"><i class="fa fa-user" aria-hidden="true"></i>
                     </button>
+                </form>
+                <form method="post" action="/cart" style="display: inline;">
                     <button name="command" class="w3-button w3-bar-item fa-lg" value="cart" type="submit"
                             style="padding: 19.5px;"><i class="fa fa-shopping-cart" aria-hidden="true"></i>
                     </button>
-                </c:if>
-
+                </form>
+            </c:if>
+            <form method="post" style="display: inline;">
                 <button name="command" class="w3-button w3-bar-item fa-lg" value="logout" type="submit"
                         style="padding: 19.5px;"><i class="fa fa-sign-out" aria-hidden="true"></i></button>
             </form>
             <c:if test="${role ne 'admin' && role ne 'quest'}">
-                <form method="post" action="" style="display: inline;">
                     <div class="w3-right w3-hide-small">
+                        <form method="post" action="/" style="display: inline;">
                         <button class="w3-bar-item w3-button" style="font-weight: bold" type="submit" name="command"
                                 value="index">
                             HOME
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="product" value="laptop">
+                        </form>
+                        <form method="post" action="/laptop" style="display: inline;">
+                            <input type="hidden" name="product" value="laptop">
+                        <button class="w3-button w3-bar-item" type="submit" name="command" value="product">
                             <i class="fa">
                             </i> LAPTOPS
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="product" value="desktop">
+                        </form>
+                        <form method="post" action="/desktop" style="display: inline;">
+                            <input type="hidden" name="product" value="desktop">
+                        <button class="w3-button w3-bar-item" type="submit" name="command" value="product">
                             <i class="fa"></i> DESKTOP COMPUTERS
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="product" value="tablets"><i
+                        </form>
+                        <form method="post" action="/tablet" style="display: inline;">
+                            <input type="hidden" name="product" value="tablet">
+                        <button class="w3-button w3-bar-item" type="submit" name="command" value="product"><i
                                 class="fa"></i>
                             IPAD&TABLETS
                         </button>
-                        <button class="w3-button w3-bar-item" type="submit" name="product" value="accesories"><i
+                        </form>
+                        <form method="post" action="/accessorie" style="display: inline;">
+                            <input type="hidden" name="product" value="accessorie">
+                        <button class="w3-button w3-bar-item" type="submit" name="command" value="product"><i
                                 class="fa"></i>
                             ACCESORIES
                         </button>
+                        </form>
                     </div>
                 </form>
 

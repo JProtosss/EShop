@@ -1,4 +1,4 @@
-package eshop.command.cart;
+package eshop.command.page;
 
 import eshop.command.Command;
 
@@ -11,7 +11,7 @@ import java.io.IOException;
 /**
  * @author Евгений
  */
-public class CartCommand implements Command {
+public class ToCart implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, ServletException {
         request.getRequestDispatcher("/WEB-INF/views/cart.jsp").forward(request,response);

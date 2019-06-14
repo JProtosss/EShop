@@ -2,7 +2,7 @@ package eshop.command.user.admin;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.user.AccountCommand;
+import eshop.command.page.ToAccount;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.service.user.CRUDUser;
@@ -20,11 +20,11 @@ import java.sql.SQLException;
 public class RemoveUserCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
-        int user_id = Integer.parseInt(request.getParameter("removeUser"));
+        int user_id = Integer.parseInt(request.getParameter("user_id"));
         DaoUser daoUser = new DaoUser();
         User user=daoUser.findById(user_id);
         CRUDUser.delete(user);
-        Command command=new AccountCommand();
+        Command command=new ToAccount();
         command.execute(request,response);
     }
 }

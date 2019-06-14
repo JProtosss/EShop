@@ -43,7 +43,7 @@
         <p>
             <c:choose>
             <c:when test="${auth}">
-        <form method="post">
+        <form method="post" action="/laptop">
             <button class="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off"
                     name="item" value="laptop" type="submit">
                 Start shoping

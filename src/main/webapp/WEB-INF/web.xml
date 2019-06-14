@@ -9,6 +9,15 @@
     <welcome-file>/starPage.jsp</welcome-file>
   </welcome-file-list>
 
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.png</url-pattern>
+    <url-pattern>*.jpg</url-pattern>
+    <url-pattern>*.css</url-pattern>
+    <url-pattern>*.js</url-pattern>
+    <url-pattern>*.html</url-pattern>
+  </servlet-mapping>
+
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
@@ -34,11 +43,6 @@
     <url-pattern>/*</url-pattern>
   </filter-mapping>
 
-  <filter-mapping>
-    <filter-name>SessionFilter</filter-name>
-    <url-pattern>/*</url-pattern>
-  </filter-mapping>
-
   <servlet>
     <servlet-name>mainServlet</servlet-name>
     <servlet-class>eshop.controller.MainServlet</servlet-class>
@@ -49,6 +53,16 @@
     <servlet-name>mainServlet</servlet-name>
     <url-pattern></url-pattern>
   </servlet-mapping>
+
+  <servlet-mapping>
+    <servlet-name>mainServlet</servlet-name>
+    <url-pattern>/</url-pattern>
+  </servlet-mapping>
+
+  <filter-mapping>
+    <filter-name>SessionFilter</filter-name>
+    <servlet-name>mainServlet</servlet-name>
+  </filter-mapping>
 
     <error-page>
         <location>/WEB-INF/views/error.jsp</location>

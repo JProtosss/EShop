@@ -1,6 +1,5 @@
 package eshop.service.product;
 
-import eshop.command.product.ProductCommand;
 import eshop.dao.DaoFactory;
 import eshop.entity.Product;
 
@@ -24,7 +23,7 @@ public class CRUDProduct {
         preparedStatement.setString(2,product.getPrice());
         preparedStatement.setInt(3,product.getAmount());
         preparedStatement.setString(4,product.getDescription());
-        preparedStatement.setBlob(5,product.getImage());
+        preparedStatement.setString(5,product.getImage());
         preparedStatement.setInt(6,product.getManufacturer().getId());
         preparedStatement.setInt(7,product.getType().getId());
         preparedStatement.setInt(8,product.getId());
@@ -38,7 +37,7 @@ public class CRUDProduct {
         preparedStatement.setString(2,product.getPrice());
         preparedStatement.setInt(3,product.getAmount());
         preparedStatement.setString(4,product.getDescription());
-        preparedStatement.setBlob(5,product.getImage());
+        preparedStatement.setString(5,product.getImage());
         preparedStatement.setInt(6,product.getManufacturer().getId());
         preparedStatement.setInt(7,product.getType().getId());
         preparedStatement.executeUpdate();

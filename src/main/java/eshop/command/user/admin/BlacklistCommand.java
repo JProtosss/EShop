@@ -2,7 +2,7 @@ package eshop.command.user.admin;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.user.AccountCommand;
+import eshop.command.page.ToAccount;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.service.user.CRUDUser;
@@ -20,14 +20,14 @@ import java.sql.SQLException;
 public class BlacklistCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, ServletException, SQLException, ServiceException {
-        int user_id = Integer.parseInt(request.getParameter("blacklist"));
+        int user_id = Integer.parseInt(request.getParameter("user_id"));
         DaoUser daoUser = new DaoUser();
         User user = daoUser.findById(user_id);
         if (user.getRole().equals("client")) {
             user.setRole("blocked_client");
         } else user.setRole("client");
         CRUDUser.update(user);
-        Command command = new AccountCommand();
+        Command command = new ToAccount();
         command.execute(request, response);
     }
 }

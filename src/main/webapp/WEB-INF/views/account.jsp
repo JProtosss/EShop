@@ -22,7 +22,7 @@
 
 <div class="w3-container w3-light-grey" style="padding:128px 16px">
     <c:choose>
-        <c:when test="${role ne 'admin' && role ne 'quest'}">
+        <c:when test="${role ne 'admin' && role ne null}">
 
         </c:when>
         <c:otherwise>
@@ -49,20 +49,21 @@
                                     <td>${userInTable.getFirstname()}</td>
                                     <td>${userInTable.getLastname()}</td>
                                     <td>${userInTable.getRole()}</td>
-                                    <form method="post">
+                                    <form method="post" action="">
+                                        <input type="hidden" name="user_id" value="${userInTable.getId()}">
                                         <td>
                                             <c:choose>
                                                 <c:when test="${userInTable.getRole() eq 'blocked_client'}">
                                                     <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
-                                                            style="outline: none" type="submit" name="blacklist"
-                                                            value="${userInTable.getId()}">
+                                                            style="outline: none" type="submit" name="command"
+                                                            value="blacklist">
                                                         Delete from backlist
                                                     </button>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
-                                                            style="outline: none" type="submit" name="blacklist"
-                                                            value="${userInTable.getId()}">
+                                                            style="outline: none" type="submit" name="command"
+                                                            value="blacklist">
                                                         Add to blacklits
                                                     </button>
                                                 </c:otherwise>
@@ -71,8 +72,8 @@
                                         </td>
                                         <td>
                                             <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
-                                                    style="outline: none" type="submit" name="removeUser"
-                                                    value="${userInTable.getId()}">
+                                                    style="outline: none" type="submit" name="command"
+                                                    value="removeUser">
                                                 Remove
                                             </button>
                                         </td>
@@ -86,9 +87,9 @@
             </div>
             <div class="w3-margin-top">
                 <h2>Goods</h2>
-                <form method="post">
+                <form method="post" action="/edit">
                     <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-green"
-                            style="outline: none" type="submit" name="editProduct" value="-1">
+                            style="outline: none" type="submit" name="command" value="editProduct">
                         Add
                     </button>
                 </form>
@@ -117,22 +118,27 @@
                                 <td>${productInTable.getManufacturer().getName()}</td>
                                 <td>${productInTable.getManufacturer().getCountry()}</td>
                                 <td>${productInTable.getType().getType()}</td>
-                                <form method="post">
-                                    <td>
+                                <td>
+                                    <form method="post" action="/edit">
+                                        <input type="hidden" name="product_id" value="${productInTable.getId()}">
                                         <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
-                                                style="outline: none" type="submit" name="editProduct"
-                                                value="${productInTable.getId()}">
+                                                style="outline: none" type="submit" name="command"
+                                                value="editProduct">
                                             Edit
                                         </button>
-                                    </td>
-                                    <td>
+                                    </form>
+                                </td>
+
+                                <td>
+                                    <form method="post" action="/account">
+                                        <input type="hidden" name="product_id" value="${productInTable.getId()}">
                                         <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
-                                                style="outline: none" type="submit" name="removeProduct"
-                                                value="${productInTable.getId()}">
+                                                style="outline: none" type="submit" name="command"
+                                                value="removeProduct">
                                             Remove
                                         </button>
-                                    </td>
-                                </form>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
                         </tbody>
