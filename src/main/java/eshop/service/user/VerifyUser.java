@@ -26,7 +26,7 @@ public class VerifyUser {
             }
         } else {
             isAnyError = false;
-            userErrors.setUsername("BLANK_FIELDS");
+            userErrors.setLoginForm("BLANK_FIELDS");
         }
         return isAnyError;
     }

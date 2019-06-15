@@ -42,9 +42,9 @@ public class UpdateProductCommand implements Command {
         product.setManufacturer(daoManufacturer.findByName(manufacturerName));
         product.setType(daoCategory.findByType(productType));
 
-        if (request.getSession().getAttribute("product_id") !=null)
+        if (request.getSession().getAttribute("product") !=null)
         {
-            product.setId((Integer) request.getSession().getAttribute("product_id"));
+            product.setId(((Product) request.getSession().getAttribute("product")).getId());
             CRUDProduct.update(product);
         }else
         {

@@ -16,6 +16,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 import static eshop.service.CookieService.addCookies;
 import static eshop.service.user.VerifyUser.verifyUserParams;
@@ -26,6 +27,7 @@ import static eshop.service.user.VerifyUser.verifyUserParams;
 
 public class AuthCommand implements Command {
     private static final Logger logger = LogManager.getLogger();
+    final static ResourceBundle resourceBundle = ResourceBundle.getBundle("language");
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
@@ -34,17 +36,14 @@ public class AuthCommand implements Command {
         boolean isAnyError = verifyUserParams(request, user, userErrors);
         if (!isAnyError) {
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
-
-            System.out.println("gRecaptchaResponse=" + gRecaptchaResponse);
-
             // Verify CAPTCHA.
             isAnyError = VerifyUtils.verify(gRecaptchaResponse);
-        }
+        }else request.getSession().setAttribute("loginError",resourceBundle.getString("loginError"));
         boolean flag = true;
         if (!isAnyError) {
+            request.getSession().setAttribute("loginError",null);
             request.getSession().setAttribute("auth", true);
             request.getSession().setAttribute("user", user);
-            request.getSession().setAttribute("logined", true);
             addCookies(request, response, user);
             if (user.getRole().equals("admin")) {
                 flag = false;
@@ -52,9 +51,8 @@ public class AuthCommand implements Command {
                 Command command = new ToAccount();
                 command.execute(request, response);
             } else request.getSession().setAttribute("role", "client");
-        } else request.getSession().setAttribute("logined", true);
-        if (flag) response.sendRedirect("/");
-
+        }
+        if (flag) response.sendRedirect(request.getRequestURI());
     }
 
     public User getUserFromParameters(HttpServletRequest request) {

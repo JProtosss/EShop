@@ -4,6 +4,8 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import javax.servlet.*;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -14,11 +16,11 @@ public class InitialFilter implements Filter {
     private static final Logger logger = LogManager.getLogger();
 
     @Override
-    public void doFilter(ServletRequest request,
+    public void doFilter(ServletRequest servletRequest,
                          ServletResponse response,
                          FilterChain filterChain) throws IOException, ServletException {
-        request.setCharacterEncoding(encoding);
-        filterChain.doFilter(request, response);
+        servletRequest.setCharacterEncoding(encoding);
+        filterChain.doFilter(servletRequest, response);
     }
 
     @Override

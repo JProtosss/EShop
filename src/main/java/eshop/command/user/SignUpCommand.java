@@ -2,6 +2,7 @@ package eshop.command.user;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
+import eshop.command.page.ToAccount;
 import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
@@ -10,38 +11,40 @@ import eshop.service.UserFromParameters;
 import eshop.validators.UserInfoValidation;
 import org.apache.commons.beanutils.BeanUtils;
 
+import javax.mail.MessagingException;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.ResourceBundle;
 
 /**
  * @author Евгений
  */
 public class SignUpCommand implements Command {
 
+    final static ResourceBundle resourceBundle = ResourceBundle.getBundle("language");
+
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, MessagingException, ServiceException, SQLException {
         User user = UserFromParameters.getUserFromParameters(request);
         request.getSession().removeAttribute("userError");
         UserErrors userErrors = new UserErrors();
-        boolean isUserValid = persistUser(user, userErrors);
+        boolean isUserValid = persistUser(user,request);
         boolean flag=true;
         if (!isUserValid) {
-            request.getSession().setAttribute("userError", userErrors);
             response.sendRedirect(request.getRequestURI());
             flag=false;
         }
         if (flag) {
-            request.getSession().setAttribute("user", user);
-            request.getSession().setAttribute("auth", true);
-            request.getRequestDispatcher("/WEB-INF/views/startPage.jsp").forward(request, response);
+           Command command=new ToAccount();
+           command.execute(request,response);
         }
     }
 
-    private boolean persistUser(User user, UserErrors userErrors) {
-        if (UserInfoValidation.userInfoValid(user, userErrors)) {
+    private boolean persistUser(User user,HttpServletRequest request) {
+        if (UserInfoValidation.userInfoValid(user,request)) {
             DaoUser daoUser = null;
             try {
                 daoUser = DaoFactory.getDaoUser();
@@ -49,7 +52,7 @@ public class SignUpCommand implements Command {
                 daoUser.findByEmail(user);
                 return true;
             } catch (SQLException | ServiceException e) {
-                e.printStackTrace();
+                request.getSession().setAttribute("userInfoError",resourceBundle.getString("userExist"));
             }
 
         }

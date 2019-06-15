@@ -21,6 +21,10 @@ public class IndexCommand implements Command {
 //            request.getSession().setAttribute("auth",false);
 //        }
         boolean flag=true;
+        if (request.getSession().getAttribute("lang_id")==null)
+        {
+            request.getSession().setAttribute("lang_id","en");
+        }
         if (request.getSession().getAttribute("role")=="admin")
         {
             flag=false;

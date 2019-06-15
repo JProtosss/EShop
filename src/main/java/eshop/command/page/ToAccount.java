@@ -23,7 +23,6 @@ import static eshop.service.CookieService.addCookies;
 public class ToAccount implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
-        request.getSession().removeAttribute("command");
         if (request.getSession().getAttribute("role")=="admin") {
             List<User> usersList = new ArrayList<>();
             List<Product> productsList=new ArrayList<>();

@@ -21,10 +21,9 @@ public class SessionFilter implements Filter{
         HttpServletResponse response=(HttpServletResponse) servletResponse;
         HttpSession session = request.getSession(true);
 
-        if (session.getAttribute("logined")!=null)
-            if (!(Boolean)session.getAttribute("logined"))
-                ((HttpServletResponse) servletResponse).sendRedirect("/");
-
+        if(session.getAttribute("role")==null) {
+            session.setAttribute("role", "guest");
+        }
         filterChain.doFilter(servletRequest, servletResponse);
     }
 

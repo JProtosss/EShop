@@ -8,7 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-
+<fmt:setLocale value="${lang_id}"/>
+<fmt:setBundle basename="language"/>
 <div class="w3-bar w3-white w3-card" id="myNavbar">
     <c:choose>
         <c:when test="${auth}">
@@ -26,34 +27,34 @@
                         <form method="post" action="/" style="display: inline;">
                         <button class="w3-bar-item w3-button" style="font-weight: bold" type="submit" name="command"
                                 value="index">
-                            HOME
+                            <fmt:message key="Home"/>
                         </button>
                         </form>
                         <form method="post" action="/laptop" style="display: inline;">
                             <input type="hidden" name="product" value="laptop">
                         <button class="w3-button w3-bar-item" type="submit" name="command" value="product">
                             <i class="fa">
-                            </i> LAPTOPS
+                            </i> <fmt:message key="Laptops"/>
                         </button>
                         </form>
                         <form method="post" action="/desktop" style="display: inline;">
                             <input type="hidden" name="product" value="desktop">
                         <button class="w3-button w3-bar-item" type="submit" name="command" value="product">
-                            <i class="fa"></i> DESKTOP COMPUTERS
+                            <i class="fa"></i> <fmt:message key="Desktops"/>
                         </button>
                         </form>
                         <form method="post" action="/tablet" style="display: inline;">
                             <input type="hidden" name="product" value="tablet">
                         <button class="w3-button w3-bar-item" type="submit" name="command" value="product"><i
                                 class="fa"></i>
-                            IPAD&TABLETS
+                            <fmt:message key="Tablets"/>
                         </button>
                         </form>
                         <form method="post" action="/accessorie" style="display: inline;">
                             <input type="hidden" name="product" value="accessorie">
                         <button class="w3-button w3-bar-item" type="submit" name="command" value="product"><i
                                 class="fa"></i>
-                            ACCESORIES
+                            <fmt:message key="Accessories"/>
                         </button>
                         </form>
                     </div>
@@ -68,7 +69,7 @@
         <c:otherwise>
             <button onclick="document.getElementById('login').style.display='block'"
                     class="w3-bar-item w3-button w3-wide">
-                LOGIN
+                <fmt:message key="Login"/>
             </button>
         </c:otherwise>
     </c:choose>

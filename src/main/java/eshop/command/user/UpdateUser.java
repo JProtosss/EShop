@@ -25,14 +25,14 @@ public class UpdateUser implements Command {
 
         User user = userFromParams(request);
         UserErrors userErrors = new UserErrors();
-        boolean userValid = UserInfoValidation.userInfoValid(user, userErrors);
+        boolean userValid = UserInfoValidation.userInfoValid(user, request);
         if (userValid) {
             CRUDUser.update(user);
-            request.getSession().setAttribute("user",user);
-            ToAccount toAccount=new ToAccount();
-            toAccount.execute(request,response);
-        }else
-        response.sendRedirect(request.getRequestURI());
+            request.getSession().setAttribute("user", user);
+            ToAccount toAccount = new ToAccount();
+            toAccount.execute(request, response);
+        } else
+            request.getRequestDispatcher("/WEB-INF/views/account.jsp").forward(request,response);
     }
 
     private User userFromParams(HttpServletRequest request) {
@@ -47,8 +47,13 @@ public class UpdateUser implements Command {
         User currentUser = (User) request.getSession().getAttribute("user");
         user.setId(currentUser.getId());
         user.setUsername(username);
-        if (password.equals("")) user.setPassword(currentUser.getPassword());
-        user.setConfirmPassword(user.getPassword());
+        if (password.equals("")) {
+            user.setPassword(currentUser.getPassword());
+            user.setConfirmPassword(user.getPassword());
+        } else {
+            user.setPassword(password);
+            user.setConfirmPassword(confirmPassword);
+        }
         user.setEmail(email);
         user.setFirstname(firstname);
         user.setLastname(lastname);

@@ -5,7 +5,4 @@ package eshop.validators;
  */
 public class ProductInfoValidation {
 
-    public void loginFormValid()
-    {}
-
 }

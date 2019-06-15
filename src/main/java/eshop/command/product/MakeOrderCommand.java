@@ -2,6 +2,8 @@ package eshop.command.product;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
+import eshop.command.page.ToAccount;
+import eshop.command.page.ToProductPage;
 import eshop.dao.DaoProduct;
 import eshop.entity.Order;
 import eshop.entity.Product;
@@ -28,6 +30,6 @@ public class MakeOrderCommand implements Command {
         int user_id=((User)request.getSession().getAttribute("user")).getId();
         Order order=new Order(product.getId(),user_id);
         CRUDOrder.add(order);
-        request.getRequestDispatcher("/WEB-INF/views/account.jsp").forward(request,response);
+        request.getRequestDispatcher("/WEB-INF/views/product.jsp").forward(request,response);
     }
 }

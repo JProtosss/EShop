@@ -32,6 +32,8 @@ public class CommandFactory {
         commands.put("logout", new LogOutCommand());
         commands.put("index", new IndexCommand());
         commands.put("updateUser",new UpdateUser());
+        commands.put("sendMessage",new SendMessage()) ;
+        commands.put("language",new LanguageCommand());
     }
 
     public static Command createCommand(HttpServletRequest request) {
@@ -57,6 +59,8 @@ public class CommandFactory {
                 return commands.get("editProduct");
             case "removeproduct":
                 return commands.get("removeProduct");
+            case "sendmessage":
+                return commands.get("sendMessage");
             case "signup":
                 return commands.get("signup");
             case "account":

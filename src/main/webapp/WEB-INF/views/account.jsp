@@ -6,8 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setLocale value="${lang_id}"/>
+<fmt:setBundle basename="language"/>
 <html>
 <head>
     <title>Account</title>
@@ -25,32 +27,32 @@
         <c:when test="${role ne 'admin' && role ne null}">
             <div class="w3-margin-top w3-margin-bottom">
                 <form method="post" action="/account" class="w3-container">
-                    <h4>Username:</h4>
+                    <h4><fmt:message key="username"/>:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="${user.getUsername()}" name="username">
-                    <h4>Password:</h4>
+                    <h4><fmt:message key="password"/>:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="" name="password">
-                    <h4>Confirm password:</h4>
+                    <h4><fmt:message key="confirmPassword"/>:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="" name="confirmPassword">
                     <h4>Email:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="${user.getEmail()}" name="email">
-                    <h4>Firstname:</h4>
+                    <h4><fmt:message key="firstname"/>:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="${user.getFirstname()}" name="firstname">
-                    <h4>Lastname:</h4>
+                    <h4><fmt:message key="lastname"/>:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="${user.getLastname()}"
                            name="lastname">
-                    <h4>Address:</h4>
+                    <h4><fmt:message key="address"/>:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="${user.getAddress()}" name="address">
                     <div class="w3-margin-top">
                         <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
                                 type="submit" name="command" value="updateUser">
-                            Save
+                            "<fmt:message key="save"/>
                         </button>
                     </div>
                 </form>
@@ -58,17 +60,17 @@
         </c:when>
         <c:otherwise>
             <div class="w3-margin-top w3-margin-bottom">
-                <h2>Clients</h2>
+                <h2><fmt:message key="clients"/></h2>
                 <div style="overflow-y: scroll;max-height: 500px;">
                     <table class="w3-table-all w3-card-8 w3-border w3-bordered">
                         <tbody>
                         <tr>
-                            <th>Username</th>
+                            <th><fmt:message key="username"/></th>
                             <th>Email</th>
-                            <th>Firstname</th>
-                            <th>Lastname</th>
-                            <th>Amount of orders</th>
-                            <th>Role</th>
+                            <th><fmt:message key="firstname"/></th>
+                            <th><fmt:message key="lastname"/></th>
+                            <th><fmt:message key="amountOfOrders"/></th>
+                            <th><fmt:message key="role"/></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -89,14 +91,14 @@
                                                     <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
                                                             style="outline: none" type="submit" name="command"
                                                             value="blacklist">
-                                                        Delete from backlist
+                                                        <fmt:message key="deleteFromBlacklist"/>
                                                     </button>
                                                 </c:when>
                                                 <c:otherwise>
                                                     <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-blue"
                                                             style="outline: none" type="submit" name="command"
                                                             value="blacklist">
-                                                        Add to blacklits
+                                                        <fmt:message key="addToBlacklist"/>
                                                     </button>
                                                 </c:otherwise>
                                             </c:choose>
@@ -106,7 +108,7 @@
                                             <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
                                                     style="outline: none" type="submit" name="command"
                                                     value="removeUser">
-                                                Remove
+                                                <fmt:message key="remove"/>
                                             </button>
                                         </td>
                                     </form>
@@ -129,14 +131,14 @@
                     <table class="w3-table-all w3-card-8 w3-border w3-bordered">
                         <tbody>
                         <tr>
-                            <th>Name</th>
-                            <th>Price</th>
-                            <th>Amount</th>
-                            <th>Description</th>
-                            <th>Image</th>
-                            <th>Manufacturer</th>
-                            <th>Country</th>
-                            <th>Type</th>
+                            <th><fmt:message key="name"/></th>
+                            <th><fmt:message key="price"/></th>
+                            <th><fmt:message key="amount"/></th>
+                            <th><fmt:message key="description"/></th>
+                            <th><fmt:message key="image"/></th>
+                            <th><fmt:message key="manufacturer"/></th>
+                            <th><fmt:message key="country"/></th>
+                            <th><fmt:message key="type"/></th>
                             <th></th>
                             <th></th>
                         </tr>
@@ -156,7 +158,7 @@
                                         <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-orange"
                                                 style="outline: none" type="submit" name="command"
                                                 value="editProduct">
-                                            Edit
+                                            <fmt:message key="edit"/>
                                         </button>
                                     </form>
                                 </td>
@@ -167,7 +169,7 @@
                                         <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-red"
                                                 style="outline: none" type="submit" name="command"
                                                 value="removeProduct">
-                                            Remove
+                                            <fmt:message key="remove"/>
                                         </button>
                                     </form>
                                 </td>

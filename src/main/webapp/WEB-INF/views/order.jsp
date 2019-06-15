@@ -8,6 +8,8 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<fmt:setLocale value="${lang_id}"/>
+<fmt:setBundle basename="language"/>
 <html>
 <head>
     <title>Order</title>
@@ -163,9 +165,9 @@
                 <h4>Cart <span class="price" style="color:black"><i class="fa fa-shopping-cart"></i> <b>1</b></span>
                 </h4>
                 <p>Product Name<span>${product.getName()}</span></p>
-                <p>Price <span class="price">${product.getPrice()}</span></p>
+                <p>Price <span class="price">${product.getPrice()}<i class="fa fa-dollar"></i></span></p>
                 <hr>
-                <p>Total <span class="price" style="color:black"><b>${product.getPrice()}</b></span></p>
+                <p>Total <span class="price" style="color:black"><b>${product.getPrice()}<i class="fa fa-dollar"></i></b></span></p>
             </div>
         </div>
     </div>

@@ -8,6 +8,7 @@ public class UserErrors {
     private String email;
     private String password;
     private String registered;
+    private String loginForm;
 
     public UserErrors() {
     }
@@ -58,5 +59,13 @@ public class UserErrors {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getLoginForm() {
+        return loginForm;
+    }
+
+    public void setLoginForm(String loginForm) {
+        this.loginForm = loginForm;
     }
 }
