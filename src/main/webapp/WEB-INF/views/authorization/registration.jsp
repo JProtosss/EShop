@@ -37,11 +37,13 @@
                    id="lastname" required>
             <label><b><fmt:message key="address"/></b></label>
             <input class="w3-input w3-border" type="text" placeholder="<fmt:message key="enter"/> <fmt:message key="address"/>" name="address" required>
+            <div class="g-recaptcha w3-margin-top"
+                 data-sitekey="6Ldy5qgUAAAAAODSi5SjRnqgYGSsGm9fqT0THH-r"></div>
             <c:if test="${userInfoError!=null}">
                 <h6 style="color: red">${userInfoError}</h6>
             </c:if>
             <button class="w3-button w3-block w3-black w3-section w3-padding" type="submit" name="command"
-                    value="signup"><fmt:message key="recoverPassword"/>
+                    value="signup"><fmt:message key="registration"/>
             </button>
         </div>
     </form>

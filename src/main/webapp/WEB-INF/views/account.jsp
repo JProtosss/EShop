@@ -52,7 +52,7 @@
                     <div class="w3-margin-top">
                         <button class="w3-padding-16 w3-right w3-button w3-border w3-round-medium w3-border-orange"
                                 type="submit" name="command" value="updateUser">
-                            "<fmt:message key="save"/>
+                            <fmt:message key="save"/>
                         </button>
                     </div>
                 </form>

@@ -2,14 +2,12 @@ package eshop.command.user;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.page.ToAccount;
 import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.entity.UserErrors;
 import eshop.service.UserFromParameters;
 import eshop.validators.UserInfoValidation;
-import org.apache.commons.beanutils.BeanUtils;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -38,7 +36,7 @@ public class SignUpCommand implements Command {
             flag=false;
         }
         if (flag) {
-           Command command=new ToAccount();
+           Command command=new AuthCommand();
            command.execute(request,response);
         }
     }
@@ -48,13 +46,12 @@ public class SignUpCommand implements Command {
             DaoUser daoUser = null;
             try {
                 daoUser = DaoFactory.getDaoUser();
-                daoUser.add(user);
                 daoUser.findByEmail(user);
+                daoUser.add(user);
                 return true;
             } catch (SQLException | ServiceException e) {
                 request.getSession().setAttribute("userInfoError",resourceBundle.getString("userExist"));
             }
-
         }
         return false;
     }

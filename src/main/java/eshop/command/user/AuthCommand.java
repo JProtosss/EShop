@@ -6,7 +6,6 @@ import eshop.command.page.ToAccount;
 import eshop.entity.User;
 import eshop.entity.UserErrors;
 import eshop.util.VerifyUtils;
-import org.apache.commons.beanutils.BeanUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -19,6 +18,7 @@ import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 import static eshop.service.CookieService.addCookies;
+import static eshop.service.UserFromParameters.getUserFromParameters;
 import static eshop.service.user.VerifyUser.verifyUserParams;
 
 /**
@@ -33,15 +33,15 @@ public class AuthCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
         User user = getUserFromParameters(request);
         UserErrors userErrors = new UserErrors();
-        boolean isAnyError = verifyUserParams(request, user, userErrors);
+        boolean isAnyError = verifyUserParams(user);
         if (!isAnyError) {
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
             // Verify CAPTCHA.
             isAnyError = VerifyUtils.verify(gRecaptchaResponse);
-        }else request.getSession().setAttribute("loginError",resourceBundle.getString("loginError"));
+        } else request.getSession().setAttribute("loginError", resourceBundle.getString("loginError"));
         boolean flag = true;
         if (!isAnyError) {
-            request.getSession().setAttribute("loginError",null);
+            request.getSession().setAttribute("loginError", null);
             request.getSession().setAttribute("auth", true);
             request.getSession().setAttribute("user", user);
             addCookies(request, response, user);
@@ -53,15 +53,6 @@ public class AuthCommand implements Command {
             } else request.getSession().setAttribute("role", "client");
         }
         if (flag) response.sendRedirect(request.getRequestURI());
-    }
-
-    public User getUserFromParameters(HttpServletRequest request) {
-        User user = new User();
-        try {
-            BeanUtils.populate(user, request.getParameterMap());
-        } catch (ReflectiveOperationException e) {
-        }
-        return user;
     }
 
 
