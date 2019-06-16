@@ -42,6 +42,7 @@ public class AuthCommand implements Command {
         boolean flag = true;
         if (!isAnyError) {
             request.getSession().setAttribute("loginError", null);
+            request.getSession().setAttribute("userInfoError", null);
             request.getSession().setAttribute("auth", true);
             request.getSession().setAttribute("user", user);
             addCookies(request, response, user);

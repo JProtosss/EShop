@@ -23,6 +23,10 @@
 <div class="w3-container w3-light-grey" style="padding:128px 16px">
     <div class="w3-margin-top w3-margin-bottom">
         <form method="post" action="/account" class="w3-container">
+            <c:choose>
+                <c:when test="${product ne null}"><input type="hidden" name="id" value="${product.getId()}"></c:when>
+                <c:otherwise><input type="hidden" name="id" value="-1"></c:otherwise>
+            </c:choose>
             <h4><fmt:message key="name"/>:</h4>
             <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                    value="<c:if test="${product ne null}">${product.getName()}</c:if>" name="productName">

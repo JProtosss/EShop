@@ -23,6 +23,7 @@ public class UpdateProductCommand implements Command {
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, ServletException, SQLException, ServiceException {
 
         Product product=new Product();
+        int id= Integer.parseInt(request.getParameter("id"));
         String productName=request.getParameter("productName");
         String productPrice= request.getParameter("productPrice");
         int productAmount= Integer.parseInt(request.getParameter("productAmount"));
@@ -42,9 +43,9 @@ public class UpdateProductCommand implements Command {
         product.setManufacturer(daoManufacturer.findByName(manufacturerName));
         product.setType(daoCategory.findByType(productType));
 
-        if (request.getSession().getAttribute("product") !=null)
+        if (id!=-1)
         {
-            product.setId(((Product) request.getSession().getAttribute("product")).getId());
+            product.setId(id);
             CRUDProduct.update(product);
         }else
         {

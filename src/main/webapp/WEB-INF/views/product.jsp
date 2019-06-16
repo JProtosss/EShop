@@ -54,10 +54,12 @@
                                 <h3>${item.getManufacturer().getName()} ${item.getName()}</h3>
                                 <p class="w3-opacity">${item.getPrice()}<i class="fa fa-dollar"></i></p>
                                 <p>${item.getDescription()}</p>
+                                <c:if test="${user.getRole() eq 'client'}">
                                 <p>
                                     <button class="w3-button w3-light-grey w3-block" type="submit" name="command"
                                             value="orderPage"><i class="fa"><fmt:message key="buy"/></i></button>
                                 </p>
+                                </c:if>
                             </div>
                         </div>
                     </form>
