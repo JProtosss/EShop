@@ -30,18 +30,6 @@ public class DaoUser {
     final static String FIND_USER_WHERE_USERNAME_AND_PASSWORD = resourceBundle.getString("FIND_USER_WHERE_USERNAME_AND_PASSWORD");
     final static String FIND_USER_WHERE_USERNAME_AND_EMAIL = resourceBundle.getString("FIND_USER_WHERE_USERNAME_AND_EMAIL");
 
-
-    public void add(User user) throws SQLException, ServiceException {
-        PreparedStatement preparedStatement = DaoFactory.getConnection().prepareStatement(INSERT_USER);
-        preparedStatement.setString(1, user.getUsername());
-        preparedStatement.setString(2, PasswordService.passwordHash(user.getPassword()));
-        preparedStatement.setString(3, user.getEmail());
-        preparedStatement.setString(4, user.getFirstname());
-        preparedStatement.setString(5, user.getLastname());
-        preparedStatement.setString(6, user.getAddress());
-        preparedStatement.executeUpdate();
-    }
-
     public boolean findByEmail(User user) throws SQLException, ServiceException {
         PreparedStatement preparedStatement = DaoFactory.getConnection().prepareStatement(FIND_USER_BY_EMAIL);
         preparedStatement.setString(1, user.getEmail());
@@ -86,7 +74,6 @@ public class DaoUser {
         if (resultSet.next()) {
             setProps(user, resultSet);
         }
-
         return user;
     }
 
@@ -96,14 +83,14 @@ public class DaoUser {
         statement.setString(2, PasswordService.passwordHash(user.getPassword()));
         ResultSet resultSet = statement.executeQuery();
 
-        while (resultSet.next()) {
+        if (resultSet.next()) {
             setProps(user, resultSet);
             return true;
         }
         return false;
     }
 
-    private void setProps(User user, ResultSet resultSet) throws SQLException, ServiceException {
+    private void setProps(User user, ResultSet resultSet) throws SQLException {
         user.setId(resultSet.getInt("id"));
         user.setUsername(resultSet.getString("username"));
         user.setPassword(resultSet.getString("password"));
@@ -111,7 +98,6 @@ public class DaoUser {
         user.setFirstname(resultSet.getString("firstname"));
         user.setLastname(resultSet.getString("lastname"));
         user.setAddress(resultSet.getString("address"));
-        user.setChosenProducts(resultSet.getString("chosenProducts"));
         user.setRole(resultSet.getString("role"));
     }
 

@@ -4,7 +4,6 @@ import eshop.dao.DaoFactory;
 import eshop.entity.Order;
 
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
 
@@ -12,8 +11,6 @@ import java.util.ResourceBundle;
  * @author Евгений
  */
 public class CRUDOrder {
-
-
     final static ResourceBundle resourceBundle = ResourceBundle.getBundle("sqlstatements");
     final static String ADD_ORDER=resourceBundle.getString("ADD_ORDER");
 

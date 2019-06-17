@@ -2,7 +2,7 @@ package eshop.command.user.admin;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.page.ToAccount;
+import eshop.command.page.ToAccountPage;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.service.user.CRUDUser;
@@ -24,7 +24,7 @@ public class RemoveUserCommand implements Command {
         DaoUser daoUser = new DaoUser();
         User user=daoUser.findById(user_id);
         CRUDUser.delete(user);
-        Command command=new ToAccount();
+        Command command=new ToAccountPage();
         command.execute(request,response);
     }
 }

@@ -32,7 +32,6 @@ public class DaoManufacturer {
     }
 
     public Manufacturer findByName(String name) throws SQLException {
-        Manufacturer manufacturer;
         PreparedStatement preparedStatement=DaoFactory.getConnection().prepareStatement(FIND_MANUFACTURER_BY_NAME);
         preparedStatement.setString(1,name);
         ResultSet resultSet=preparedStatement.executeQuery();

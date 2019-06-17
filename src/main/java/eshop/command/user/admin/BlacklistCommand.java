@@ -2,7 +2,7 @@ package eshop.command.user.admin;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.page.ToAccount;
+import eshop.command.page.ToAccountPage;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
 import eshop.service.user.CRUDUser;
@@ -27,7 +27,7 @@ public class BlacklistCommand implements Command {
             user.setRole("blocked_client");
         } else user.setRole("client");
         CRUDUser.update(user);
-        Command command = new ToAccount();
+        Command command = new ToAccountPage();
         command.execute(request, response);
     }
 }

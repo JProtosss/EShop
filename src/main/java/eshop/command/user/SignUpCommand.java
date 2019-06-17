@@ -2,12 +2,13 @@ package eshop.command.user;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
-import eshop.entity.UserErrors;
 import eshop.service.UserFromParameters;
-import eshop.validators.UserInfoValidation;
+import eshop.service.user.CRUDUser;
+import eshop.validation.UserInfoValidation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import javax.mail.MessagingException;
 import javax.servlet.ServletException;
@@ -19,38 +20,40 @@ import java.util.ResourceBundle;
 
 /**
  * @author Евгений
+ * User registration form. Checking valid and then @AuthCommand
  */
 public class SignUpCommand implements Command {
 
     final static ResourceBundle resourceBundle = ResourceBundle.getBundle("language");
+    private static final Logger logger = LogManager.getLogger();
 
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, MessagingException, ServiceException, SQLException {
         User user = UserFromParameters.getUserFromParameters(request);
         request.getSession().removeAttribute("userError");
-        UserErrors userErrors = new UserErrors();
-        boolean isUserValid = persistUser(user,request);
-        boolean flag=true;
+        boolean isUserValid = persistUser(user, request);
+        boolean flag = true;
         if (!isUserValid) {
             response.sendRedirect(request.getRequestURI());
-            flag=false;
+            flag = false;
         }
         if (flag) {
-           Command command=new AuthCommand();
-           command.execute(request,response);
+            Command command = new AuthCommand();
+            command.execute(request, response);
         }
     }
 
-    private boolean persistUser(User user,HttpServletRequest request) {
-        if (UserInfoValidation.userInfoValid(user,request)) {
-            DaoUser daoUser = null;
+    private boolean persistUser(User user, HttpServletRequest request) {
+        if (UserInfoValidation.userInfoValid(user, request)) {
             try {
-                daoUser = DaoFactory.getDaoUser();
+                DaoUser daoUser = new DaoUser();
+                CRUDUser crudUser=new CRUDUser();
                 daoUser.findByEmail(user);
-                daoUser.add(user);
+                crudUser.add(user);
+                logger.info("User " + user.getUsername() + " registered");
                 return true;
             } catch (SQLException | ServiceException e) {
-                request.getSession().setAttribute("userInfoError",resourceBundle.getString("userExist"));
+                request.getSession().setAttribute("userInfoError", resourceBundle.getString("userExist"));
             }
         }
         return false;

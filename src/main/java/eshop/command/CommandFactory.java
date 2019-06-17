@@ -12,13 +12,18 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * @author Евгений
+ * checking user request
+ */
+
 public class CommandFactory {
     private static Map<String, Command> commands = new HashMap<>();
 
     static {
         commands.put("auth", new AuthCommand());
         commands.put("signup", new SignUpCommand());
-        commands.put("account", new ToAccount());
+        commands.put("account", new ToAccountPage());
         commands.put("editProduct", new ToEditPage());
         commands.put("updateProduct", new UpdateProductCommand());
         commands.put("removeProduct", new RemoveProductCommand());

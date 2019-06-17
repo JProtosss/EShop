@@ -1,18 +1,20 @@
 package eshop.entity;
 
 
+import java.util.Objects;
+
 /**
  * @author Евгений
  */
 public class Product {
-    int id;
-    String name;
-    String price;
-    int amount;
-    String description;
-    String image;
-    Manufacturer manufacturer;
-    Type type;
+    private int id;
+    private String name;
+    private String price;
+    private int amount;
+    private String description;
+    private String image;
+    private Manufacturer manufacturer;
+    private Type type;
 
     public Product(int id, String name, String price, int amount, String description, String image, Manufacturer manufacturer, Type type) {
         this.id = id;
@@ -21,22 +23,21 @@ public class Product {
         this.amount = amount;
         this.description = description;
         this.image = image;
-        this.manufacturer=manufacturer;
-        this.type=type;
+        this.manufacturer = manufacturer;
+        this.type = type;
     }
 
-    public Product(String name, String price, int amount, String description, Manufacturer manufacturer, Type type)
-    {
+    public Product(String name, String price, int amount, String description, Manufacturer manufacturer, Type type) {
         this.name = name;
         this.price = price;
         this.amount = amount;
         this.description = description;
-        this.manufacturer=manufacturer;
-        this.type=type;
+        this.manufacturer = manufacturer;
+        this.type = type;
     }
 
-    public Product()
-    {}
+    public Product() {
+    }
 
     public int getId() {
         return id;
@@ -100,5 +101,25 @@ public class Product {
 
     public void setType(Type type) {
         this.type = type;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Product product = (Product) o;
+        return id == product.id &&
+                amount == product.amount &&
+                name.equals(product.name) &&
+                price.equals(product.price) &&
+                Objects.equals(description, product.description) &&
+                Objects.equals(image, product.image) &&
+                manufacturer.equals(product.manufacturer) &&
+                type.equals(product.type);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, price, amount, description, image, manufacturer, type);
     }
 }

@@ -1,7 +1,6 @@
 package eshop.dao;
 
 import eshop.entity.Order;
-import eshop.entity.Product;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;

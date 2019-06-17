@@ -1,22 +1,17 @@
 package eshop.command;
 
-import com.google.protobuf.ServiceException;
-
-import javax.mail.MessagingException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.Locale;
 
 /**
  * @author Евгений
+ * internationalization
  */
 public class LanguageCommand implements Command {
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException {
         String language = request.getParameter("lang_id");
         if (language.equals("en"))
             language="ru";else

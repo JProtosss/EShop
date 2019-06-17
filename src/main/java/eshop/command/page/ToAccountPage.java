@@ -20,7 +20,7 @@ import static eshop.service.CookieService.addCookies;
 /**
  * @author Евгений
  */
-public class ToAccount implements Command {
+public class ToAccountPage implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException, SQLException {
         if (request.getSession().getAttribute("role")=="admin") {
@@ -47,6 +47,5 @@ public class ToAccount implements Command {
             addCookies(request, response, (User) request.getSession().getAttribute("user"));
         }
         request.getRequestDispatcher("/WEB-INF/views/account.jsp").forward(request,response);
-        //dispatcherForward(request, response, request.getRequestDispatcher("/WEB-INF/views/account.jsp"));
     }
 }

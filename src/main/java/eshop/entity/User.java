@@ -12,7 +12,6 @@ public class User {
     private String firstname;
     private String lastname;
     private String address;
-    private String chosenProducts;
     private String role;
     private int amountOfOrders;
 
@@ -26,6 +25,16 @@ public class User {
         this.firstname = firstname;
         this.lastname = lastname;
         this.role = role;
+    }
+
+    public User(int id, String username,String password, String email, String firstname, String lastname, String address) {
+        this.id = id;
+        this.username = username;
+        this.password=password;
+        this.email = email;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.address = address;
     }
 
     public String getRole() {
@@ -100,19 +109,15 @@ public class User {
         this.address = address;
     }
 
-    public String getChosenProducts() {
-        return chosenProducts;
-    }
-
-    public void setChosenProducts(String chosenProducts) {
-        this.chosenProducts = chosenProducts;
+    public void setAmountOfOrders(int amountOfOrders) {
+        this.amountOfOrders = amountOfOrders;
     }
 
     public int getAmountOfOrders() {
         return amountOfOrders;
     }
 
-    public void setAmountOfOrders(int amountOfOrders) {
-        this.amountOfOrders = amountOfOrders;
+    public Object clone() throws CloneNotSupportedException {
+        return super.clone();
     }
 }

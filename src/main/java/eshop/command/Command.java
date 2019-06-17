@@ -12,6 +12,4 @@ import java.sql.SQLException;
 
 public interface Command {
     void execute(HttpServletRequest httpRequest, HttpServletResponse httpResponse) throws IOException, MessagingException, SQLException, ServiceException, ServletException;
-
-
 }

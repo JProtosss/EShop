@@ -22,38 +22,33 @@ public class DaoFactory {
     private static final Logger logger = LogManager.getLogger();
     private static Lock lockForSingleTone = new ReentrantLock();
 
-    private DaoFactory()
-    {}
+    private DaoFactory() {
+    }
 
-    public static void setConnection() throws ClassNotFoundException, IOException {
-       lockForSingleTone.lock();
-        if (connection==null)
-        {
-            InputStream inputStream = DaoFactory.class.getResourceAsStream("/db.properties");
-            Properties properties = new Properties();
-            properties.load(inputStream);
-            String url = properties.getProperty("url");
-            String driver = properties.getProperty("driver");
-            String user = properties.getProperty("user");
-            String password = properties.getProperty("password");
-            Class.forName(driver);
+
+    public static Connection getConnection() {
+        lockForSingleTone.lock();
+        if (connection == null) {
             try {
-                connection=DriverManager.getConnection(url+"?serverTimezone=" + TimeZone.getDefault().getID()+"&autoReconnect=true&useSSL=false", user, password);
+                InputStream inputStream = DaoFactory.class.getResourceAsStream("/db.properties");
+                Properties properties = new Properties();
+                properties.load(inputStream);
+                String url = properties.getProperty("url");
+                String driver = properties.getProperty("driver");
+                String user = properties.getProperty("user");
+                String password = properties.getProperty("password");
+                Class.forName(driver);
+                connection = DriverManager.getConnection(url + "?serverTimezone=" + TimeZone.getDefault().getID() + "&autoReconnect=true&useSSL=false", user, password);
+                logger.info("Connection to db successfull");
             } catch (SQLException e) {
-                e.printStackTrace();
+                logger.info("Cannot connect to db");
+            } catch (ClassNotFoundException e) {
+               logger.error("Error with db driver");
+            } catch (IOException e) {
+                logger.error("File with db properties not found");
             }
         }
         lockForSingleTone.unlock();
-        logger.info("connected to db");
-    }
-
-public static Connection getConnection()
-{
-    return connection;
-}
-
-    public static DaoUser getDaoUser() throws SQLException {
-        DaoUser daoUser = new DaoUser();
-        return daoUser;
+        return connection;
     }
 }

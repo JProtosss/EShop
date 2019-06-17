@@ -2,14 +2,13 @@ package eshop.util;
 
 import eshop.entity.GoogleKeys;
 
+import javax.json.Json;
+import javax.json.JsonObject;
+import javax.json.JsonReader;
 import javax.net.ssl.HttpsURLConnection;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.URL;
-
-import javax.json.Json;
-import javax.json.JsonObject;
-import javax.json.JsonReader;
 
 /**
  * @author Евгений

@@ -1,4 +1,4 @@
-package eshop.validators;
+package eshop.validation;
 
 /**
  * @author Евгений

@@ -1,9 +1,10 @@
 package eshop.service.user;
 
 import com.google.protobuf.ServiceException;
-import eshop.dao.DaoFactory;
 import eshop.dao.DaoUser;
 import eshop.entity.User;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.sql.SQLException;
 
@@ -11,16 +12,15 @@ import java.sql.SQLException;
  * @author Евгений
  */
 public class VerifyUser {
-    public static boolean verifyUserParams( User user) {
+    private static final Logger logger = LogManager.getLogger();
+    public static boolean verifyUserParams(User user) {
         boolean isAnyError = true;
         if (isCredentialsWellFormed(user)){
             try {
-                DaoUser daoUser = DaoFactory.getDaoUser();
+                DaoUser daoUser = new DaoUser();
                 isAnyError = !daoUser.findByUsernameAndPassword(user);
-            } catch (SQLException e) {
-
-            } catch (ServiceException e) {
-
+            } catch (SQLException | ServiceException e) {
+                logger.error("Was attempt to find by username and password but user was not found. user("+user.getUsername()+")");
             }
         } else {
             isAnyError = false;

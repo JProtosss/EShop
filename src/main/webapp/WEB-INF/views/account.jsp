@@ -27,14 +27,15 @@
         <c:when test="${role ne 'admin' && role ne null}">
             <div class="w3-margin-top w3-margin-bottom">
                 <form method="post" action="/account" class="w3-container">
+                    <input type="hidden" name="id" value="${user.getId()}">
                     <h4><fmt:message key="username"/>:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="${user.getUsername()}" name="username">
                     <h4><fmt:message key="password"/>:</h4>
-                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                    <input type="password" class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="" name="password">
                     <h4><fmt:message key="confirmPassword"/>:</h4>
-                    <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
+                    <input type="password" class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
                            value="" name="confirmPassword">
                     <h4>Email:</h4>
                     <input class="w3-input" style="border-radius: 15px 50px 30px 5px; outline: none"
@@ -124,7 +125,7 @@
                 <form method="post" action="/edit">
                     <button class="w3-medium w3-btn w3-white w3-border w3-round-medium w3-border-green"
                             style="outline: none" type="submit" name="command" value="editProduct">
-                        Add
+                        <fmt:message key="add"/>
                     </button>
                 </form>
                 <div style="overflow-y: scroll;max-height: 600px;">

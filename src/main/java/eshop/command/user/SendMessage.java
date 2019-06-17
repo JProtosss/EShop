@@ -4,21 +4,19 @@ import com.google.protobuf.ServiceException;
 import eshop.command.Command;
 import eshop.service.EmailService;
 
-import javax.mail.MessagingException;
-import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
-import java.sql.SQLException;
 import java.util.ResourceBundle;
 
 /**
  * @author Евгений
+ * Message for support. Will be on eshop.epam@google.com
  */
 public class SendMessage implements Command {
     final static ResourceBundle resourceBundle = ResourceBundle.getBundle("mail");
     @Override
-    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
+    public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, ServiceException {
         String clientName=request.getParameter("name");
         String email=request.getParameter("email");
         String subject=request.getParameter("subject");

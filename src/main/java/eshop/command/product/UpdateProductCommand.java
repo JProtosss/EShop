@@ -2,7 +2,7 @@ package eshop.command.product;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.page.ToAccount;
+import eshop.command.page.ToAccountPage;
 import eshop.dao.DaoCategory;
 import eshop.dao.DaoManufacturer;
 import eshop.entity.Product;
@@ -17,6 +17,7 @@ import java.sql.SQLException;
 
 /**
  * @author Евгений
+ * Updating product info from admin page
  */
 public class UpdateProductCommand implements Command {
     @Override
@@ -51,7 +52,7 @@ public class UpdateProductCommand implements Command {
         {
           CRUDProduct.add(product);
         }
-        Command command=new ToAccount();
+        Command command=new ToAccountPage();
         command.execute(request,response);
     }
 }

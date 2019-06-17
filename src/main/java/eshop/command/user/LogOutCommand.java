@@ -10,6 +10,7 @@ import java.io.IOException;
 
 /**
  * @author Евгений
+ * Logout method. Cleaning session
  */
 public class LogOutCommand implements Command {
 

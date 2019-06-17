@@ -2,9 +2,8 @@ package eshop.command.user;
 
 import com.google.protobuf.ServiceException;
 import eshop.command.Command;
-import eshop.command.page.ToAccount;
+import eshop.command.page.ToAccountPage;
 import eshop.entity.User;
-import eshop.entity.UserErrors;
 import eshop.util.VerifyUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -23,6 +22,7 @@ import static eshop.service.user.VerifyUser.verifyUserParams;
 
 /**
  * @author Евгений
+ * Login class. If userValid => authorization
  */
 
 public class AuthCommand implements Command {
@@ -32,7 +32,6 @@ public class AuthCommand implements Command {
     @Override
     public void execute(HttpServletRequest request, HttpServletResponse response) throws IOException, MessagingException, SQLException, ServiceException, ServletException {
         User user = getUserFromParameters(request);
-        UserErrors userErrors = new UserErrors();
         boolean isAnyError = verifyUserParams(user);
         if (!isAnyError) {
             String gRecaptchaResponse = request.getParameter("g-recaptcha-response");
@@ -41,6 +40,7 @@ public class AuthCommand implements Command {
         } else request.getSession().setAttribute("loginError", resourceBundle.getString("loginError"));
         boolean flag = true;
         if (!isAnyError) {
+            logger.info("User "+user.getUsername()+" logged in");
             request.getSession().setAttribute("loginError", null);
             request.getSession().setAttribute("userInfoError", null);
             request.getSession().setAttribute("auth", true);
@@ -49,17 +49,10 @@ public class AuthCommand implements Command {
             if (user.getRole().equals("admin")) {
                 flag = false;
                 request.getSession().setAttribute("role", "admin");
-                Command command = new ToAccount();
+                Command command = new ToAccountPage();
                 command.execute(request, response);
             } else request.getSession().setAttribute("role", "client");
         }
         if (flag) response.sendRedirect(request.getRequestURI());
-    }
-
-
-    private void cleanSession(HttpServletRequest request) {
-        request.getSession().removeAttribute("userError");
-        request.getSession().removeAttribute("auth");
-        request.getSession().removeAttribute("user");
     }
 }

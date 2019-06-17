@@ -1,4 +1,4 @@
-package eshop.validators;
+package eshop.validation;
 
 import eshop.entity.User;
 
@@ -13,7 +13,7 @@ public class UserInfoValidation {
     final static ResourceBundle resourceBundle = ResourceBundle.getBundle("language");
 
     public static boolean userInfoValid(User user, HttpServletRequest request) {
-        if (!user.getPassword().equals(user.getConfirmPassword()) || !user.getPassword().matches("^[a-zA-Z]\\w{8,45}$")) {
+        if (!user.getPassword().equals(user.getConfirmPassword()) || !user.getPassword().matches("^[a-zA-Z]\\w{7,45}$")) {
             request.getSession().setAttribute("userInfoError", resourceBundle.getString("invalid-password"));
             return false;
         }
