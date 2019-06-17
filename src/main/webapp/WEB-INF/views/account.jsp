@@ -57,6 +57,37 @@
                         </button>
                     </div>
                 </form>
+                <h2><fmt:message key="orders"/></h2>
+                <div style="overflow-y: scroll;max-height: 500px;">
+                    <table class="w3-table-all w3-card-8 w3-border w3-bordered">
+                        <tbody>
+                        <tr>
+                            <th>Id</th>
+                            <th><fmt:message key="name"/></th>
+                            <th><fmt:message key="price"/></th>
+                            <th><fmt:message key="manufacturer"/></th>
+                            <th><fmt:message key="country"/></th>
+                            <th><fmt:message key="type"/></th>
+                        </tr>
+                        <c:set var="count" value="1"/>
+                        <c:forEach var="order" items="${ordersList}">
+                            <c:forEach var="productInTable" items="${productsList}">
+                                <c:if test="${order.getProduct_id().equals(productInTable.getId())}">
+                                    <tr>
+                                        <td>${count}</td>
+                                        <td>${productInTable.getName()}</td>
+                                        <td>${productInTable.getPrice()}</td>
+                                        <td>${productInTable.getManufacturer().getName()}</td>
+                                        <td>${productInTable.getManufacturer().getCountry()}</td>
+                                        <td>${productInTable.getType().getType()}</td>
+                                    </tr>
+                                    <c:set var="count" value="${count+1}"/>
+                                </c:if>
+                            </c:forEach>
+                        </c:forEach>
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </c:when>
         <c:otherwise>
